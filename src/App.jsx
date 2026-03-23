@@ -1,6 +1,5 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import ProblemSection from './components/ProblemSection'
 import DashboardSection from './components/DashboardSection'
 import FeaturesSection from './components/FeaturesSection'
 import HowItWorks from './components/HowItWorks'
@@ -13,7 +12,6 @@ export default function App() {
     <div className="min-h-screen bg-off-white overflow-x-hidden">
       <Navbar />
       <Hero />
-      <ProblemSection />
       <DashboardSection />
       <FeaturesSection />
       <HowItWorks />
