@@ -19,7 +19,7 @@ export default function WaitlistSection() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            fields: [{ objectTypeId: '0-1', name: 'email', value: email }],
+            fields: [{ name: 'email', value: email }],
             context: { pageUri: 'https://migro.com.au', pageName: 'Migro Waitlist' },
           }),
         }
