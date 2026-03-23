@@ -30,18 +30,17 @@ const docRows = [
 
 function DashboardScreen({ visibleRows }) {
   return (
-    <div className="p-5 h-full flex flex-col">
-      <div className="mb-4">
-        <h2 className="text-forest text-base font-bold">Dashboard</h2>
+    <div className="p-4 h-full flex flex-col">
+      <div className="mb-3">
+        <h2 className="text-forest text-sm font-bold">Dashboard</h2>
         <p className="text-forest/40 text-xs mt-0.5">Coastal Migration — Intake submissions</p>
       </div>
       <div className="flex-1 bg-surface rounded-lg border border-warm-grey overflow-hidden">
-        <div className="flex items-center px-4 py-2 border-b border-warm-grey">
-          <span className="w-14 text-forest/35 text-xs flex-shrink-0">Date</span>
-          <span className="w-28 text-forest/35 text-xs flex-shrink-0">Applicant</span>
-          <span className="flex-1 text-forest/35 text-xs">Contact</span>
-          <span className="w-44 text-forest/35 text-xs flex-shrink-0">Recommended Visa</span>
-          <span className="w-20 text-forest/35 text-xs flex-shrink-0 text-right">Status</span>
+        <div className="flex items-center px-3 py-2 border-b border-warm-grey">
+          <span className="w-12 text-forest/35 text-xs flex-shrink-0">Date</span>
+          <span className="flex-1 text-forest/35 text-xs">Applicant</span>
+          <span className="hidden sm:block w-40 text-forest/35 text-xs flex-shrink-0">Visa</span>
+          <span className="w-16 text-forest/35 text-xs flex-shrink-0 text-right">Status</span>
         </div>
         {dashRows.slice(0, visibleRows).map((row, i) => (
           <motion.div
@@ -49,19 +48,21 @@ function DashboardScreen({ visibleRows }) {
             initial={{ opacity: 0, x: -6 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
-            className="flex items-center px-4 py-3 border-b border-warm-grey/50 last:border-0"
+            className="flex items-center px-3 py-2.5 border-b border-warm-grey/50 last:border-0"
           >
-            <span className="w-14 text-forest/40 text-xs flex-shrink-0">{row.date}</span>
-            <span className="w-28 text-forest text-xs font-medium flex-shrink-0">{row.name}</span>
-            <span className="flex-1 text-forest/50 text-xs">{row.email}</span>
-            <span className="w-44 text-forest/50 text-xs flex-shrink-0">{row.visa}</span>
-            <span className="w-20 flex-shrink-0 flex items-center justify-end gap-1">
+            <span className="w-12 text-forest/40 text-xs flex-shrink-0">{row.date}</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-forest text-xs font-medium truncate">{row.name}</p>
+              <p className="text-forest/40 text-[10px] truncate hidden xs:block">{row.email}</p>
+            </div>
+            <span className="hidden sm:block w-40 text-forest/50 text-xs flex-shrink-0 truncate pr-2">{row.visa}</span>
+            <span className="w-16 flex-shrink-0 flex items-center justify-end gap-1">
               {row.status === 'complete' ? (
                 <span className="text-xs text-emerald font-medium">Complete</span>
               ) : (
                 <>
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse-slow flex-shrink-0" />
-                  <span className="text-xs text-amber-600 font-medium">In Progress</span>
+                  <span className="text-xs text-amber-600 font-medium">Active</span>
                 </>
               )}
             </span>
@@ -98,7 +99,7 @@ function DetailScreen({ showAssessment }) {
           <div className="space-y-2.5">
             {visaPathways.map(item => (
               <div key={item.label} className="flex items-center gap-2">
-                <span className="text-forest/50 text-xs w-40 flex-shrink-0">{item.label}</span>
+                <span className="text-forest/50 text-xs w-28 sm:w-40 flex-shrink-0">{item.label}</span>
                 <div className="flex-1 h-1.5 bg-warm-grey rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
@@ -214,31 +215,32 @@ function DashboardWidget() {
   ]
 
   return (
-    <div className="w-full rounded-xl overflow-hidden border border-warm-grey shadow-warm-md flex" style={{ height: 340 }}>
+    <div className="w-full aspect-square rounded-xl overflow-hidden border border-warm-grey shadow-warm-md flex">
       {/* Sidebar */}
-      <div className="w-36 bg-forest flex flex-col flex-shrink-0">
-        <div className="px-3 py-3.5 flex items-center gap-2 border-b border-white/10">
+      <div className="w-10 sm:w-36 bg-forest flex flex-col flex-shrink-0">
+        <div className="px-2 sm:px-3 py-3.5 flex items-center gap-2 border-b border-white/10">
           <div className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center text-white text-xs font-bold font-display flex-shrink-0">M</div>
-          <span className="text-white text-xs font-semibold">Migro AI</span>
+          <span className="hidden sm:block text-white text-xs font-semibold">Migro AI</span>
         </div>
-        <div className="px-2 py-3 flex-1 space-y-0.5">
-          <p className="text-white/25 text-[10px] px-2 mb-2 uppercase tracking-wider">Main</p>
+        <div className="px-1 sm:px-2 py-3 flex-1 space-y-0.5">
+          <p className="hidden sm:block text-white/25 text-[10px] px-2 mb-2 uppercase tracking-wider">Main</p>
           {navItems.map(item => (
             <div
               key={item.label}
-              className={`px-2 py-1.5 rounded text-xs ${item.active ? 'bg-white/10 text-white' : 'text-white/40'}`}
+              className={`px-1 sm:px-2 py-1.5 rounded ${item.active ? 'bg-white/10 text-white' : 'text-white/45'}`}
             >
-              {item.label}
+              <span className="hidden sm:block text-xs">{item.label}</span>
+              <span className={`sm:hidden block w-1.5 h-1.5 rounded-full mx-auto mt-0.5 ${item.active ? 'bg-white/60' : 'bg-white/20'}`} />
             </div>
           ))}
         </div>
-        <div className="px-3 py-3 border-t border-white/10">
+        <div className="hidden sm:block px-3 py-3 border-t border-white/10">
           <p className="text-white/25 text-[10px] truncate">agent@coastalmigration.com.au</p>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="flex-1 bg-off-white overflow-hidden relative">
+      <div className="flex-1 bg-off-white overflow-hidden relative min-w-0">
         <motion.div
           key={screen}
           initial={{ opacity: 0 }}
@@ -283,11 +285,9 @@ export default function DashboardSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="overflow-x-auto"
+          className="max-w-xl mx-auto"
         >
-          <div className="min-w-[640px]">
-            <DashboardWidget />
-          </div>
+          <DashboardWidget />
         </motion.div>
       </div>
     </section>

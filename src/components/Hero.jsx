@@ -1,12 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const chatMessages = [
-  { role: 'bot', text: 'Hi! I\'m Migro. What brings you here today?' },
-  { role: 'user', text: 'I want to migrate to Australia permanently.' },
-  { role: 'bot', text: 'Great! Do you have a skills assessment completed?' },
-  { role: 'user', text: 'Yes, from Engineers Australia.' },
-  { role: 'bot', text: 'Excellent. Assessing visa pathways...' },
+  { role: 'bot', text: "Welcome! I'm here to help assess your migration options to Australia. Let's start — what is your full name?" },
+  { role: 'user', text: 'Maria Santos' },
+  { role: 'bot', text: 'Nice to meet you, Maria. What is your current nationality and country of residence?' },
+  { role: 'user', text: 'Filipino, currently living in Sydney on a bridging visa' },
+  { role: 'bot', text: 'What is your occupation and how many years of experience do you have?' },
+  { role: 'user', text: 'Registered nurse, 8 years in hospitals in Manila and 1 year in Sydney' },
+  { role: 'bot', text: 'Do you have any relevant qualifications or skills assessments completed?' },
+  { role: 'user', text: 'Bachelor of Nursing from UST. AHPRA registration is in progress.' },
+  { role: 'bot', text: 'What is your English language proficiency? Do you have any test scores (IELTS, PTE, etc.)?' },
+  { role: 'user', text: 'IELTS overall 7.5, with no band below 7' },
+  { role: 'bot', text: 'Thank you, Maria! You can upload your IELTS results and any other relevant documents directly here.' },
+  { role: 'user', type: 'file', text: 'IELTS_Results.pdf' },
+  { role: 'user', type: 'file', text: 'Resume_MariaSantos.pdf' },
 ]
 
 function TypewriterText({ text, onDone }) {
@@ -29,20 +37,40 @@ function TypewriterText({ text, onDone }) {
   return <span>{displayed}</span>
 }
 
+function FileMessage({ name }) {
+  return (
+    <div className="flex items-center gap-2 px-3 py-2 bg-emerald rounded-xl rounded-tr-sm max-w-[80%]">
+      <svg className="w-3.5 h-3.5 text-white/70 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+      </svg>
+      <span className="text-white text-xs font-medium truncate max-w-[140px]">{name}</span>
+    </div>
+  )
+}
+
 function ChatWidget() {
   const [visibleCount, setVisibleCount] = useState(0)
   const [typing, setTyping] = useState(false)
   const [showAssessment, setShowAssessment] = useState(false)
+  const messagesRef = useRef(null)
+
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight
+    }
+  }, [visibleCount, typing, showAssessment])
 
   useEffect(() => {
     if (visibleCount < chatMessages.length) {
-      const delay = visibleCount === 0 ? 800 : 900
+      const msg = chatMessages[visibleCount]
+      const delay = visibleCount === 0 ? 800 : 700
       const t = setTimeout(() => {
         setTyping(true)
+        const duration = msg.type === 'file' ? 600 : msg.text.length * 20 + 150
         setTimeout(() => {
           setTyping(false)
           setVisibleCount(v => v + 1)
-        }, chatMessages[visibleCount].text.length * 28 + 200)
+        }, duration)
       }, delay)
       return () => clearTimeout(t)
     } else {
@@ -65,7 +93,11 @@ function ChatWidget() {
       </div>
 
       {/* Messages */}
-      <div className="px-4 py-4 space-y-3 min-h-[220px] bg-surface">
+      <div
+        ref={messagesRef}
+        className="px-4 py-4 space-y-3 h-64 overflow-y-auto bg-surface"
+        style={{ scrollbarWidth: 'none' }}
+      >
         {chatMessages.slice(0, visibleCount).map((msg, i) => (
           <motion.div
             key={i}
@@ -74,15 +106,19 @@ function ChatWidget() {
             transition={{ duration: 0.25 }}
             className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
-            <div className={`max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed ${
-              msg.role === 'user'
-                ? 'bg-emerald text-white font-medium rounded-tr-sm'
-                : 'bg-warm-grey text-forest rounded-tl-sm'
-            }`}>
-              {i === visibleCount - 1 && msg.role === 'bot' && !typing
-                ? <TypewriterText text={msg.text} />
-                : msg.text}
-            </div>
+            {msg.type === 'file' ? (
+              <FileMessage name={msg.text} />
+            ) : (
+              <div className={`max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed ${
+                msg.role === 'user'
+                  ? 'bg-emerald text-white font-medium rounded-tr-sm'
+                  : 'bg-warm-grey text-forest rounded-tl-sm'
+              }`}>
+                {i === visibleCount - 1 && msg.role === 'bot' && !typing
+                  ? <TypewriterText text={msg.text} />
+                  : msg.text}
+              </div>
+            )}
           </motion.div>
         ))}
 
@@ -106,8 +142,8 @@ function ChatWidget() {
             <p className="text-forest/50 text-xs font-medium mb-2">Assessment ready</p>
             <div className="space-y-1.5">
               {[
-                { label: 'Subclass 189', score: 87 },
-                { label: 'Subclass 190', score: 74 },
+                { label: 'Subclass 186', score: 88 },
+                { label: 'Subclass 189', score: 76 },
               ].map(item => (
                 <div key={item.label} className="flex items-center gap-2">
                   <span className="text-forest/60 text-xs w-24">{item.label}</span>
@@ -125,6 +161,7 @@ function ChatWidget() {
             </div>
           </motion.div>
         )}
+
       </div>
     </div>
   )
