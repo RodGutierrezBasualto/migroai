@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import ProblemSection from './components/ProblemSection'
+import DashboardSection from './components/DashboardSection'
 import FeaturesSection from './components/FeaturesSection'
 import HowItWorks from './components/HowItWorks'
 import CredibilityStrip from './components/CredibilityStrip'
@@ -13,6 +14,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <ProblemSection />
+      <DashboardSection />
       <FeaturesSection />
       <HowItWorks />
       <CredibilityStrip />
