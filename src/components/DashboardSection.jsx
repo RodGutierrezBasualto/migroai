@@ -24,8 +24,9 @@ const statCards = [
 const docRows = [
   { name: 'Passport', status: 'valid' },
   { name: 'Bachelor of Nursing (UST)', status: 'valid' },
-  { name: 'AHPRA Registration', status: 'review' },
+  { name: 'AHPRA Registration', status: 'issue' },
   { name: 'IELTS Certificate (7.5)', status: 'valid' },
+  { name: 'Police Check (Philippines)', status: 'missing' },
 ]
 
 function DashboardScreen({ visibleRows }) {
@@ -118,29 +119,42 @@ function DetailScreen({ showAssessment }) {
   )
 }
 
-function DocsScreen({ visibleCards, visibleDocRows }) {
+const flags = [
+  {
+    level: 'error',
+    title: 'Police clearance missing',
+    detail: 'Philippines residency detected — NBI clearance required for Subclass 186 but not provided.',
+  },
+  {
+    level: 'warning',
+    title: 'Name mismatch across documents',
+    detail: "Passport: 'Maria S. Santos' · AHPRA registration: 'Maria Soledad Santos'",
+  },
+]
+
+function DocsScreen({ visibleCards, visibleDocRows, showFlags }) {
   return (
-    <div className="p-5 h-full flex flex-col">
-      <div className="mb-4">
-        <h2 className="text-forest text-base font-bold">Documents</h2>
+    <div className="p-4 h-full flex flex-col overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+      <div className="mb-3">
+        <h2 className="text-forest text-sm font-bold">Documents</h2>
         <p className="text-forest/40 text-xs mt-0.5">Maria Santos</p>
       </div>
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-1.5 mb-3">
         {statCards.slice(0, visibleCards).map((card, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
-            className="flex-1 bg-surface rounded border border-warm-grey p-2 text-center min-w-0"
+            className="flex-1 bg-surface rounded border border-warm-grey p-1.5 text-center min-w-0"
           >
-            <p className={`text-sm font-bold ${card.color}`}>{card.count}</p>
-            <p className="text-forest/40 text-[10px] leading-tight">{card.label}</p>
+            <p className={`text-xs font-bold ${card.color}`}>{card.count}</p>
+            <p className="text-forest/40 text-[9px] leading-tight">{card.label}</p>
           </motion.div>
         ))}
       </div>
-      <div className="flex-1 bg-surface rounded-lg border border-warm-grey overflow-hidden">
-        <div className="flex items-center px-4 py-2 border-b border-warm-grey">
+      <div className="bg-surface rounded-lg border border-warm-grey overflow-hidden mb-3">
+        <div className="flex items-center px-3 py-1.5 border-b border-warm-grey">
           <span className="flex-1 text-forest/35 text-xs">Document</span>
           <span className="text-forest/35 text-xs">Status</span>
         </div>
@@ -150,18 +164,52 @@ function DocsScreen({ visibleCards, visibleDocRows }) {
             initial={{ opacity: 0, x: -6 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.25 }}
-            className="flex items-center px-4 py-2.5 border-b border-warm-grey/50 last:border-0"
+            className="flex items-center px-3 py-2 border-b border-warm-grey/50 last:border-0"
           >
             <span className="flex-1 text-forest text-xs">{row.name}</span>
             <span className={`text-xs font-medium ${
-              row.status === 'valid' ? 'text-emerald' :
-              row.status === 'review' ? 'text-amber-600' : 'text-red-500'
+              row.status === 'valid'   ? 'text-emerald' :
+              row.status === 'review' ? 'text-amber-600' :
+              row.status === 'issue'  ? 'text-red-500' : 'text-red-400'
             }`}>
-              {row.status === 'valid' ? 'Valid' : row.status === 'review' ? 'Review' : 'Issue'}
+              {row.status === 'valid' ? 'Valid' : row.status === 'review' ? 'Review' : row.status === 'issue' ? 'Issue' : 'Missing'}
             </span>
           </motion.div>
         ))}
       </div>
+
+      {showFlags && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="space-y-2"
+        >
+          <div className="flex items-center gap-1.5 mb-1">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-forest/40 flex-shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span className="text-forest/40 text-[10px] font-medium uppercase tracking-wider">AI cross-document analysis</span>
+          </div>
+          {flags.map((flag, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.25 }}
+              className={`rounded-lg border px-3 py-2 ${
+                flag.level === 'error'
+                  ? 'border-red-200 bg-red-50'
+                  : 'border-amber-200 bg-amber-50'
+              }`}
+            >
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${flag.level === 'error' ? 'bg-red-500' : 'bg-amber-500'}`} />
+                <p className={`text-xs font-semibold ${flag.level === 'error' ? 'text-red-700' : 'text-amber-700'}`}>{flag.title}</p>
+              </div>
+              <p className={`text-[10px] leading-relaxed pl-3 ${flag.level === 'error' ? 'text-red-600/80' : 'text-amber-700/80'}`}>{flag.detail}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
     </div>
   )
 }
@@ -172,6 +220,7 @@ function DashboardWidget() {
   const [showAssessment, setShowAssessment] = useState(false)
   const [visibleCards, setVisibleCards] = useState(0)
   const [visibleDocRows, setVisibleDocRows] = useState(0)
+  const [showFlags, setShowFlags] = useState(false)
 
   useEffect(() => {
     const timers = []
@@ -181,28 +230,30 @@ function DashboardWidget() {
       ;[0, 1, 2].forEach(i => {
         timers.push(setTimeout(() => setVisibleRows(i + 1), 500 + i * 400))
       })
-      // hold after last row (500 + 2*400 = 1300ms for last row), then transition
       timers.push(setTimeout(() => setScreen('detail'), 500 + 2 * 400 + 2300))
     }
 
     if (screen === 'detail') {
       setShowAssessment(false)
       timers.push(setTimeout(() => setShowAssessment(true), 700))
-      // bars finish at 700 + 200 (delay) + 800 (duration) = 1700ms, hold 2500ms
       timers.push(setTimeout(() => setScreen('docs'), 700 + 1000 + 2500))
     }
 
     if (screen === 'docs') {
       setVisibleCards(0)
       setVisibleDocRows(0)
+      setShowFlags(false)
       ;[0, 1, 2, 3, 4].forEach(i => {
-        timers.push(setTimeout(() => setVisibleCards(i + 1), 300 + i * 220))
+        timers.push(setTimeout(() => setVisibleCards(i + 1), 300 + i * 200))
       })
-      const docStart = 300 + 4 * 220 + 200
-      ;[0, 1, 2, 3].forEach(i => {
-        timers.push(setTimeout(() => setVisibleDocRows(i + 1), docStart + i * 280))
+      const docStart = 300 + 4 * 200 + 200
+      ;[0, 1, 2, 3, 4].forEach(i => {
+        timers.push(setTimeout(() => setVisibleDocRows(i + 1), docStart + i * 250))
       })
-      timers.push(setTimeout(() => setScreen('dashboard'), docStart + 3 * 280 + 2200))
+      const flagsAt = docStart + 4 * 250 + 500
+      timers.push(setTimeout(() => setShowFlags(true), flagsAt))
+      // hold long enough to read both flags (2 × 0.25s delay + read time)
+      timers.push(setTimeout(() => setScreen('dashboard'), flagsAt + 3500))
     }
 
     return () => timers.forEach(clearTimeout)
@@ -250,7 +301,7 @@ function DashboardWidget() {
         >
           {screen === 'dashboard' && <DashboardScreen visibleRows={visibleRows} />}
           {screen === 'detail' && <DetailScreen showAssessment={showAssessment} />}
-          {screen === 'docs' && <DocsScreen visibleCards={visibleCards} visibleDocRows={visibleDocRows} />}
+          {screen === 'docs' && <DocsScreen visibleCards={visibleCards} visibleDocRows={visibleDocRows} showFlags={showFlags} />}
         </motion.div>
       </div>
     </div>
@@ -276,7 +327,7 @@ export default function DashboardSection() {
             Your entire practice,<br />in one view.
           </h2>
           <p className="text-forest/55 text-lg">
-            Every intake, assessment, and document — organised automatically.
+            Every intake, assessment, and document — organised automatically. Cross-document inconsistencies caught before they become problems.
           </p>
         </motion.div>
 
