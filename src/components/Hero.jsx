@@ -223,32 +223,7 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-warm-grey"
-            >
-              {[
-                'Built for MARA agents',
-                'GDPR + Privacy Act compliant',
-                'Australian data residency',
-              ].map((label, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-emerald" />
-                  <span className="text-forest/50 text-xs font-medium">{label}</span>
-                </div>
-              ))}
-            </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-forest/35 text-xs mt-4 leading-relaxed max-w-md"
-            >
-              Migro is a registered ASD Cyber Security Business Partner, receiving threat intelligence and advisories from Australia's national cyber security agency.
-            </motion.p>
           </div>
 
           {/* Right: Framed Chat Widget */}
@@ -262,23 +237,28 @@ export default function Hero() {
             <p className="text-center text-forest/35 text-xs mb-1">This is what your clients see</p>
 
             <ChatWidget />
-
-            {/* Callout below widget */}
-            <div className="rounded-xl border border-emerald/20 bg-emerald/5 p-4 text-center">
-              <p className="text-forest text-sm font-semibold leading-snug">Add your own branded AI intake chat to your website</p>
-              <div className="flex flex-wrap items-center justify-center gap-2 mt-1.5">
-                {['Fully MARA-compliant', 'GDPR secure', 'Live in minutes'].map((tag, i) => (
-                  <span key={i} className="inline-flex items-center gap-1 text-emerald text-xs font-medium">
-                    <span className="w-1 h-1 rounded-full bg-emerald" />{tag}
-                  </span>
-                ))}
-              </div>
-              <p className="text-forest/35 text-xs mt-3 leading-relaxed">
-                Migro is a registered ASD Cyber Security Business Partner, receiving threat intelligence and advisories from Australia's national cyber security agency.
-              </p>
-            </div>
           </motion.div>
         </div>
+
+        {/* Full-width callout below both columns */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="mt-8 rounded-xl border border-emerald/20 bg-emerald/5 p-5 text-center"
+        >
+          <p className="text-forest text-sm font-semibold leading-snug">Add your own branded AI intake chat to your website</p>
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
+            {['Fully MARA-compliant', 'GDPR secure', 'Live in minutes'].map((tag, i) => (
+              <span key={i} className="inline-flex items-center gap-1 text-emerald text-xs font-medium">
+                <span className="w-1 h-1 rounded-full bg-emerald" />{tag}
+              </span>
+            ))}
+          </div>
+          <p className="text-forest/60 text-sm mt-3 leading-relaxed max-w-2xl mx-auto">
+            Migro is a registered ASD Cyber Security Business Partner, receiving threat intelligence and advisories from Australia's national cyber security agency.
+          </p>
+        </motion.div>
       </div>
     </section>
   )
