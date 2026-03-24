@@ -57,8 +57,9 @@ const certBadges = [
 ]
 
 const infraLogos = [
-  { src: '/logos/google-cloud.png', alt: 'Google Cloud' },
-  { src: '/logos/vertex-ai.svg',    alt: 'Vertex AI' },
+  { src: '/logos/CloudRun-512-color-rgb.png', alt: 'Cloud Run' },
+  { src: '/logos/vertex-ai.svg',              alt: 'Vertex AI' },
+  { src: '/logos/firebase.png',               alt: 'Firebase' },
 ]
 
 export default function CredibilityStrip() {
@@ -140,7 +141,7 @@ export default function CredibilityStrip() {
           </div>
 
           <p className="text-center text-white/30 text-xs mt-10 max-w-xl mx-auto leading-relaxed">
-            Migro infrastructure is built on Google Cloud Platform, which holds ISO 27001, SOC 2 Type II, PCI DSS, and Australian IRAP certifications.
+            Migro infrastructure runs on Google Cloud (Cloud Run + Firebase + Vertex AI), which holds ISO 27001, SOC 2 Type II, PCI DSS, and Australian IRAP certifications.
           </p>
         </motion.div>
 
