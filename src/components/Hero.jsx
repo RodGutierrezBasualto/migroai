@@ -240,6 +240,15 @@ export default function Hero() {
                 </div>
               ))}
             </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-forest/35 text-xs mt-4 leading-relaxed max-w-md"
+            >
+              Migro is a registered ASD Cyber Security Business Partner, receiving threat intelligence and advisories from Australia's national cyber security agency.
+            </motion.p>
           </div>
 
           {/* Right: Framed Chat Widget */}
@@ -255,9 +264,15 @@ export default function Hero() {
             <ChatWidget />
 
             {/* Callout below widget */}
-            <div className="px-2 pt-1">
-              <p className="text-forest/55 text-sm font-medium">Add your own branded AI intake chat to your website</p>
-              <p className="text-forest/35 text-xs mt-0.5">Fully MARA-compliant · GDPR secure · Live in minutes</p>
+            <div className="px-1 pt-2 rounded-xl border border-emerald/20 bg-emerald/5 p-4">
+              <p className="text-forest text-sm font-semibold leading-snug">Add your own branded AI intake chat to your website</p>
+              <div className="flex flex-wrap items-center gap-2 mt-1.5">
+                {['Fully MARA-compliant', 'GDPR secure', 'Live in minutes'].map((tag, i) => (
+                  <span key={i} className="inline-flex items-center gap-1 text-emerald text-xs font-medium">
+                    <span className="w-1 h-1 rounded-full bg-emerald" />{tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

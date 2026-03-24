@@ -13,10 +13,10 @@ export default function App() {
       <Navbar />
       <Hero />
       <DashboardSection />
+      <WaitlistSection />
       <FeaturesSection />
       <HowItWorks />
       <CredibilityStrip />
-      <WaitlistSection />
       <Footer />
     </div>
   )
