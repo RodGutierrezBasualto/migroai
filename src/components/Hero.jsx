@@ -264,15 +264,18 @@ export default function Hero() {
             <ChatWidget />
 
             {/* Callout below widget */}
-            <div className="px-1 pt-2 rounded-xl border border-emerald/20 bg-emerald/5 p-4">
+            <div className="rounded-xl border border-emerald/20 bg-emerald/5 p-4 text-center">
               <p className="text-forest text-sm font-semibold leading-snug">Add your own branded AI intake chat to your website</p>
-              <div className="flex flex-wrap items-center gap-2 mt-1.5">
+              <div className="flex flex-wrap items-center justify-center gap-2 mt-1.5">
                 {['Fully MARA-compliant', 'GDPR secure', 'Live in minutes'].map((tag, i) => (
                   <span key={i} className="inline-flex items-center gap-1 text-emerald text-xs font-medium">
                     <span className="w-1 h-1 rounded-full bg-emerald" />{tag}
                   </span>
                 ))}
               </div>
+              <p className="text-forest/35 text-xs mt-3 leading-relaxed">
+                Migro is a registered ASD Cyber Security Business Partner, receiving threat intelligence and advisories from Australia's national cyber security agency.
+              </p>
             </div>
           </motion.div>
         </div>

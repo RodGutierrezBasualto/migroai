@@ -76,14 +76,14 @@ export default function CredibilityStrip() {
           <h2 className="text-white text-3xl lg:text-4xl font-bold font-display leading-tight">
             Built secure. Compliant by design.
           </h2>
-          <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 rounded-full border border-emerald/30 bg-emerald/10">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-emerald flex-shrink-0">
+          <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 rounded-full border border-white/20 bg-white/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-white flex-shrink-0">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               <path d="M9 12l2 2 4-4"/>
             </svg>
-            <span className="text-emerald text-sm font-semibold">ASD Cyber Security Business Partner</span>
+            <span className="text-white text-sm font-semibold">ASD Cyber Security Business Partner</span>
             <span className="text-white/30 text-sm">—</span>
-            <span className="text-white/60 text-sm">Australian Signals Directorate</span>
+            <span className="text-white text-sm">Australian Signals Directorate</span>
           </div>
         </motion.div>
 
