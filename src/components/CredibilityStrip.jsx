@@ -51,11 +51,14 @@ const pillars = [
   },
 ]
 
-const logos = [
-  { src: '/logos/star-level-one.png',      alt: 'CSA STAR Level One',        h: 'h-16' },
-  { src: '/logos/star-for-ai-level-one.png', alt: 'CSA STAR for AI Level One', h: 'h-16' },
-  { src: '/logos/google-cloud.png',        alt: 'Google Cloud',              h: 'h-9'  },
-  { src: '/logos/vertex-ai.svg',           alt: 'Powered by Vertex AI',      h: 'h-9'  },
+const certBadges = [
+  { src: '/logos/star-level-one.png',        alt: 'CSA STAR Level One' },
+  { src: '/logos/star-for-ai-level-one.png', alt: 'CSA STAR for AI Level One' },
+]
+
+const infraLogos = [
+  { src: '/logos/google-cloud.png', alt: 'Google Cloud' },
+  { src: '/logos/vertex-ai.svg',    alt: 'Vertex AI' },
 ]
 
 export default function CredibilityStrip() {
@@ -111,13 +114,28 @@ export default function CredibilityStrip() {
 
           {/* Logo row */}
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
-            {logos.map((logo, i) => (
+            {/* CSA STAR circular badges — transparent bg, stand alone */}
+            {certBadges.map((logo, i) => (
               <img
                 key={i}
                 src={logo.src}
                 alt={logo.alt}
-                className={`${logo.h} w-auto object-contain opacity-75 hover:opacity-100 transition-opacity duration-200`}
+                className="h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
               />
+            ))}
+
+            {/* Infrastructure logos — white bg so colours render on dark section */}
+            {infraLogos.map((logo, i) => (
+              <div
+                key={i}
+                className="bg-white/90 rounded-xl px-4 py-3 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-200"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
             ))}
           </div>
 
