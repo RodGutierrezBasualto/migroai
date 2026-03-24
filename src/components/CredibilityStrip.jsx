@@ -52,10 +52,10 @@ const pillars = [
 ]
 
 const logos = [
-  { src: '/logos/STAR-Level-1-badge.png',         alt: 'CSA STAR Level One',        h: 'h-14' },
-  { src: '/logos/STAR for AI Level One badge.png', alt: 'CSA STAR for AI Level One', h: 'h-14' },
-  { src: '/logos/google-cloud.png',                alt: 'Google Cloud',              h: 'h-8'  },
-  { src: '/logos/Powered by Vertex AI.svg',        alt: 'Powered by Vertex AI',      h: 'h-8'  },
+  { src: '/logos/star-level-one.png',      alt: 'CSA STAR Level One',        h: 'h-16' },
+  { src: '/logos/star-for-ai-level-one.png', alt: 'CSA STAR for AI Level One', h: 'h-16' },
+  { src: '/logos/google-cloud.png',        alt: 'Google Cloud',              h: 'h-9'  },
+  { src: '/logos/vertex-ai.svg',           alt: 'Powered by Vertex AI',      h: 'h-9'  },
 ]
 
 export default function CredibilityStrip() {
