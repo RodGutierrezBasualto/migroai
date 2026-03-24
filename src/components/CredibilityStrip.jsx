@@ -56,11 +56,6 @@ const certBadges = [
   { src: '/logos/star-for-ai-level-one.png', alt: 'CSA STAR for AI Level One' },
 ]
 
-const infraLogos = [
-  { src: '/logos/CloudRun-512-color-rgb.png', alt: 'Cloud Run' },
-  { src: '/logos/vertex-ai.svg',              alt: 'Vertex AI' },
-  { src: '/logos/firebase.png',               alt: 'Firebase' },
-]
 
 export default function CredibilityStrip() {
   return (
@@ -115,7 +110,6 @@ export default function CredibilityStrip() {
 
           {/* Logo row */}
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
-            {/* CSA STAR circular badges — transparent bg, stand alone */}
             {certBadges.map((logo, i) => (
               <img
                 key={i}
@@ -124,24 +118,10 @@ export default function CredibilityStrip() {
                 className="h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
               />
             ))}
-
-            {/* Infrastructure logos — white bg so colours render on dark section */}
-            {infraLogos.map((logo, i) => (
-              <div
-                key={i}
-                className="bg-white/90 rounded-xl px-4 py-3 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-200"
-              >
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-8 w-auto object-contain"
-                />
-              </div>
-            ))}
           </div>
 
           <p className="text-center text-white/30 text-xs mt-10 max-w-xl mx-auto leading-relaxed">
-            Migro infrastructure runs on Google Cloud (Cloud Run + Firebase + Vertex AI), which holds ISO 27001, SOC 2 Type II, PCI DSS, and Australian IRAP certifications.
+            Migro infrastructure is built on Google Cloud Platform, which holds ISO 27001, SOC 2 Type II, PCI DSS, and Australian IRAP certifications.
           </p>
         </motion.div>
 
