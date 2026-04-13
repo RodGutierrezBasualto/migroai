@@ -12,9 +12,8 @@ const plans = [
       '10 credits / month',
       'Document Intelligence',
       'Intake Agent',
-      '2 visa subclasses',
-      '7-day dashboard history',
-      'Email support',
+      'All visa subclasses',
+      '12-month dashboard history',
       '1 team member',
     ],
     cta: 'Start Free',
@@ -32,7 +31,7 @@ const plans = [
       'Document Intelligence',
       'Intake Agent',
       'All visa subclasses',
-      '90-day dashboard history',
+      '12-month dashboard history',
       'Credit top-ups available',
       'Data Processing Agreement',
       'MARA compliance report',
@@ -70,7 +69,7 @@ const plans = [
     features: [
       '100 credits / month',
       'Everything in Solo',
-      'Permanently locked rate',
+      'Locked in for one full year',
       'Direct founder access',
       'Monthly feedback sessions',
       'Named in product credits',
@@ -81,12 +80,6 @@ const plans = [
   },
 ]
 
-const promos = [
-  { label: 'Annual upfront', price: 'AUD $1,350/yr', note: '~$112/mo', desc: 'Save 25% paying annually' },
-  { label: 'Early adopter', price: 'AUD $129/mo locked for life', note: '', desc: 'First 20 Solo signups only' },
-  { label: 'Referral', price: 'AUD $129/mo locked 12 months', note: '', desc: 'Refer 1 paying agent' },
-  { label: 'Launch special', price: 'AUD $99/mo first 3 months', note: 'then $149', desc: 'Limited time' },
-]
 
 const comparisonRows = [
   { feature: 'Monthly price', starter: 'Free', solo: '$149/mo', practice: '$199/mo', partner: '$99/mo' },
@@ -211,31 +204,6 @@ export default function PricingPage() {
               </a>
             </motion.div>
           ))}
-        </div>
-      </section>
-
-      {/* Solo promos callout */}
-      <section className="pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5 }}
-            className="bg-emerald-tint border border-emerald/20 rounded-xl p-8"
-          >
-            <h2 className="text-forest text-xl font-bold mb-6">Solo Plan — Special Launch Offers</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {promos.map((promo, i) => (
-                <div key={i} className="bg-white rounded-lg border border-warm-grey p-4">
-                  <p className="text-forest text-xs font-semibold uppercase tracking-wide mb-2">{promo.label}</p>
-                  <p className="text-emerald text-sm font-bold leading-snug">{promo.price}</p>
-                  {promo.note && <p className="text-forest/40 text-xs">{promo.note}</p>}
-                  <p className="text-forest/55 text-xs mt-1.5">{promo.desc}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -405,7 +373,7 @@ export default function PricingPage() {
             <h2 className="text-white text-3xl font-bold font-display mb-2">Start Free Today.</h2>
             <p className="text-white/55 text-lg mb-8">No credit card required.</p>
             <a
-              href="https://app.migro.com.au/signup"
+              href="mailto:info@migro.com.au"
               className="inline-block px-8 py-3 rounded-[6px] bg-white text-forest font-semibold text-sm hover:bg-off-white transition-colors duration-200"
             >
               Get Started
