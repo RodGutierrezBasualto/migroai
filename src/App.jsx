@@ -9,6 +9,7 @@ import CredibilityStrip from './components/CredibilityStrip'
 import WaitlistSection from './components/WaitlistSection'
 import PricingPage from './pages/PricingPage'
 import AboutPage from './pages/AboutPage'
+import DemoPage from './pages/DemoPage'
 
 function HomePage() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/demo" element={<DemoPage />} />
         </Routes>
         <Footer />
       </div>
