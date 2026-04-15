@@ -16,8 +16,8 @@ const plans = [
       '12-month dashboard history',
       '1 team member',
     ],
-    cta: 'Start Free',
-    ctaHref: 'https://app.migro.com.au/signup',
+    cta: 'Get Started',
+    ctaHref: 'mailto:info@migro.com.au',
     ctaStyle: 'outline',
   },
   {
@@ -38,8 +38,8 @@ const plans = [
       'Email support',
       '1 team member',
     ],
-    cta: 'Start Solo',
-    ctaHref: 'https://app.migro.com.au/signup',
+    cta: 'Get Started',
+    ctaHref: 'mailto:info@migro.com.au',
     ctaStyle: 'solid',
   },
   {
@@ -56,25 +56,7 @@ const plans = [
       'Priority support',
       'Up to 3 team members',
     ],
-    cta: 'Start Practice',
-    ctaHref: 'https://app.migro.com.au/signup',
-    ctaStyle: 'outline',
-  },
-  {
-    name: 'Design Partner',
-    price: 'AUD $99',
-    priceNote: '/ month',
-    badge: 'Limited — 3 spots',
-    highlight: false,
-    features: [
-      '100 credits / month',
-      'Everything in Solo',
-      'Locked in for one full year',
-      'Direct founder access',
-      'Monthly feedback sessions',
-      'Named in product credits',
-    ],
-    cta: 'Apply to Join',
+    cta: 'Get Started',
     ctaHref: 'mailto:info@migro.com.au',
     ctaStyle: 'outline',
   },
@@ -82,19 +64,18 @@ const plans = [
 
 
 const comparisonRows = [
-  { feature: 'Monthly price', starter: 'Free', solo: '$149/mo', practice: '$199/mo', partner: '$99/mo' },
-  { feature: 'Credits included', starter: '10', solo: '150', practice: '300', partner: '100' },
-  { feature: 'Overage rate', starter: '—', solo: '$1.25/credit', practice: '$0.85/credit', partner: '$1.25/credit' },
-  { feature: 'Document Intelligence', starter: '✓', solo: '✓', practice: '✓', partner: '✓' },
-  { feature: 'Intake Agent', starter: '✓', solo: '✓', practice: '✓', partner: '✓' },
-  { feature: 'Visa subclasses', starter: '2', solo: 'All', practice: 'All', partner: 'All' },
-  { feature: 'Credit top-ups', starter: '—', solo: '✓', practice: '✓', partner: '✓' },
-  { feature: 'Dashboard history', starter: '7 days', solo: '90 days', practice: '12 months', partner: '90 days' },
-  { feature: 'Team members', starter: '1', solo: '1', practice: 'Up to 3', partner: '1' },
-  { feature: 'Data Processing Agreement', starter: '—', solo: '✓', practice: '✓', partner: '✓' },
-  { feature: 'MARA compliance report', starter: '—', solo: '✓', practice: '✓', partner: '✓' },
-  { feature: 'Support', starter: 'Email', solo: 'Email', practice: 'Priority', partner: 'Direct to founder' },
-  { feature: 'Rate locked', starter: '—', solo: '—', practice: '—', partner: '✓ permanently' },
+  { feature: 'Monthly price',             starter: 'Free',          solo: '$149/mo',      practice: '$199/mo' },
+  { feature: 'Credits included',          starter: '10',            solo: '150',          practice: '300' },
+  { feature: 'Overage rate',              starter: '—',             solo: '$1.25/credit', practice: '$0.85/credit' },
+  { feature: 'Document Intelligence',     starter: '✓',             solo: '✓',            practice: '✓' },
+  { feature: 'Intake Agent',              starter: '✓',             solo: '✓',            practice: '✓' },
+  { feature: 'Visa subclasses',           starter: 'All',           solo: 'All',          practice: 'All' },
+  { feature: 'Credit top-ups',            starter: '—',             solo: '✓',            practice: '✓' },
+  { feature: 'Dashboard history',         starter: '12 months',     solo: '12 months',    practice: '12 months' },
+  { feature: 'Team members',              starter: '1',             solo: '1',            practice: 'Up to 3' },
+  { feature: 'Data Processing Agreement', starter: '—',             solo: '✓',            practice: '✓' },
+  { feature: 'MARA compliance report',    starter: '—',             solo: '✓',            practice: '✓' },
+  { feature: 'Support',                   starter: '—',             solo: 'Email',        practice: 'Priority' },
 ]
 
 const faqs = [
@@ -113,10 +94,6 @@ const faqs = [
   {
     q: 'Is there a free trial?',
     a: 'The Starter plan is free forever with 10 credits per month. No credit card required to start.',
-  },
-  {
-    q: 'What is the Design Partner programme?',
-    a: 'A limited founding partner rate for MARA-registered agents who help shape Migro. Maximum 3 partners. Email info@migro.com.au to apply.',
   },
 ]
 
@@ -222,7 +199,7 @@ export default function PricingPage() {
               {/* Solo & Design Partner */}
               <div className="bg-surface rounded-xl border border-warm-grey overflow-hidden">
                 <div className="px-5 py-3 border-b border-warm-grey bg-warm-grey/50">
-                  <p className="text-forest text-sm font-semibold">Solo &amp; Design Partner</p>
+                  <p className="text-forest text-sm font-semibold">Solo</p>
                 </div>
                 <table className="w-full">
                   <thead>
@@ -303,7 +280,6 @@ export default function PricingPage() {
                       <span className="block text-white/50 text-[10px] font-normal">Most Popular</span>
                     </th>
                     <th className="px-4 py-4 text-center text-forest/40 text-xs font-medium">Practice</th>
-                    <th className="px-4 py-4 text-center text-forest/40 text-xs font-medium">Design Partner</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -313,7 +289,6 @@ export default function PricingPage() {
                       <td className="px-4 py-3 text-center text-forest/55 text-sm">{row.starter}</td>
                       <td className="px-4 py-3 text-center text-forest/80 text-sm font-medium bg-emerald-tint/40">{row.solo}</td>
                       <td className="px-4 py-3 text-center text-forest/55 text-sm">{row.practice}</td>
-                      <td className="px-4 py-3 text-center text-forest/55 text-sm">{row.partner}</td>
                     </tr>
                   ))}
                 </tbody>

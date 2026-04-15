@@ -210,7 +210,7 @@ export default function Hero() {
               className="flex flex-wrap gap-4"
             >
               <a
-                href="#waitlist"
+                href="mailto:info@migro.com.au"
                 className="px-6 py-3 rounded-[6px] bg-emerald hover:bg-emerald-hover text-white font-semibold text-sm transition-colors duration-200"
               >
                 Join the Waitlist

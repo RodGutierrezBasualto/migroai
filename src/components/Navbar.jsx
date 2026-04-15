@@ -60,12 +60,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="#waitlist"
-          onClick={e => {
-            if (location.pathname !== '/') {
-              // navigate home then scroll — handled by homepage anchor
-            }
-          }}
+          href="mailto:info@migro.com.au"
           className="px-5 py-2 rounded-[6px] bg-emerald hover:bg-emerald-hover text-white font-semibold text-sm transition-colors duration-200"
         >
           Join Waitlist

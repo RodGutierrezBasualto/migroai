@@ -493,11 +493,11 @@ function Phase2() {
   }, [visibleCount])
 
   return (
-    <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-      {/* Left: chat */}
+    <div className="space-y-6">
+      {/* Chat — full width */}
       <div>
         <p className="text-forest/35 text-[10px] uppercase tracking-widest text-center mb-3">What your client sees — 9pm Sunday</p>
-        <div className="rounded-xl overflow-hidden border border-warm-grey bg-surface shadow-warm-md">
+        <div className="rounded-xl overflow-hidden border border-warm-grey bg-surface shadow-warm-md max-w-lg mx-auto">
           <div className="px-4 py-3 bg-warm-grey border-b border-warm-grey flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-forest flex items-center justify-center text-xs font-bold text-white font-display flex-shrink-0">M</div>
             <div>
@@ -510,7 +510,7 @@ function Phase2() {
           </div>
           <div
             ref={messagesRef}
-            className="px-4 py-4 space-y-3 h-80 overflow-y-auto bg-surface"
+            className="px-4 py-4 space-y-3 h-72 overflow-y-auto bg-surface"
             style={{ scrollbarWidth: 'none' }}
           >
             {demoChat.slice(0, visibleCount).map((msg, i) => (
@@ -545,7 +545,7 @@ function Phase2() {
         </div>
       </div>
 
-      {/* Right: agent panel */}
+      {/* Agent panel — full width below */}
       <div>
         <p className="text-forest/35 text-[10px] uppercase tracking-widest text-center mb-3">What you see — Monday morning</p>
         <AnimatePresence>
@@ -557,32 +557,135 @@ function Phase2() {
               transition={{ duration: 0.4 }}
               className="rounded-xl border border-warm-grey bg-surface shadow-warm-md overflow-hidden"
             >
-              <div className="px-5 py-4 border-b border-warm-grey flex items-center justify-between">
+              {/* Header */}
+              <div className="px-6 py-5 border-b border-warm-grey flex items-center justify-between">
                 <div>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-tint text-emerald">New Lead — Qualified</span>
-                  <p className="text-forest/35 text-xs mt-2">Received 10:52 PM · Sunday 14 Apr 2026</p>
+                  <p className="text-forest/35 text-xs mb-1">← Back to Clients</p>
+                  <h2 className="text-forest text-2xl font-bold font-display">Rodrigo Gutierrez — 14 April 2026</h2>
                 </div>
+                <button className="flex items-center gap-1.5 px-3 py-2 rounded-[6px] border border-warm-grey text-forest/55 hover:text-forest text-xs font-medium transition-colors duration-200 flex-shrink-0">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Export CSV
+                </button>
               </div>
-              <div className="p-5 space-y-5">
-                <div>
-                  <p className="text-forest/30 text-[10px] uppercase tracking-wider mb-1.5">Client</p>
-                  <p className="text-forest text-base font-semibold">Rodrigo Gutierrez</p>
-                  <p className="text-forest/45 text-sm">roberto.gutierrez@gmail.com</p>
-                </div>
-                <div>
-                  <p className="text-forest/30 text-[10px] uppercase tracking-wider mb-1.5">Pathway Identified</p>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-sm font-semibold text-forest">482 — Temporary Skills Shortage</span>
-                    <span className="text-xs px-2 py-0.5 rounded bg-emerald-tint text-emerald font-medium">Spouse Sponsorship</span>
+
+              <div className="p-6 space-y-6">
+                {/* Contact */}
+                <div className="bg-warm-grey/30 rounded-xl border border-warm-grey p-4">
+                  <p className="text-forest/35 text-[10px] uppercase tracking-wider mb-3">Contact</p>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2 text-sm text-forest/65">
+                      <svg className="w-3.5 h-3.5 text-forest/30 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      Rodrigo Gutierrez
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-forest/65">
+                      <svg className="w-3.5 h-3.5 text-forest/30 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      roberto.gutierrez@gmail.com
+                    </div>
                   </div>
                 </div>
+
+                {/* Confidence + Urgency */}
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-amber-200 bg-amber-50 text-amber-700 text-xs font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    Confidence: high
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-red-200 bg-red-50 text-red-700 text-xs font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                    Urgency: high
+                  </span>
+                </div>
+
+                {/* Applicant summary */}
                 <div>
-                  <p className="text-forest/30 text-[10px] uppercase tracking-wider mb-1.5">Risk Flags</p>
-                  <div className="rounded-lg border border-amber-100 bg-amber-50 px-4 py-3 flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 mt-1.5" />
-                    <p className="text-amber-800 text-xs leading-relaxed">Spouse currently on Student Visa — confirm current location and visa expiry before lodgement.</p>
+                  <p className="text-forest/35 text-[10px] uppercase tracking-wider mb-2">Applicant Summary</p>
+                  <p className="text-forest/65 text-sm leading-relaxed">
+                    Rodrigo Gutierrez is a Software Engineer employed by an approved Australian sponsor in Sydney. He has been married for over 3 years and is seeking to include his wife as a secondary applicant on his 482 visa. His wife is currently onshore in Australia on a Student Visa. No health or character concerns have been flagged. Enquiry received Sunday evening — student visa expiry creates moderate urgency.
+                  </p>
+                </div>
+
+                {/* Recommended pathways */}
+                <div>
+                  <p className="text-forest/35 text-[10px] uppercase tracking-wider mb-3">Recommended Pathways</p>
+                  <div className="space-y-3">
+                    {[
+                      {
+                        subclass: 'Subclass 482 — Temporary Skills Shortage (Secondary Applicant)',
+                        fit: 'Strong fit',
+                        fitColor: 'bg-emerald-tint text-emerald',
+                        desc: "Rodrigo's employer holds approved sponsorship status. His wife qualifies as a secondary applicant on the 482. As she is currently onshore on a Student Visa, she may be eligible to apply without departing Australia, subject to visa conditions.",
+                      },
+                      {
+                        subclass: 'Subclass 186 — Employer Nomination Scheme (Transition Stream)',
+                        fit: 'Possible',
+                        fitColor: 'bg-amber-50 text-amber-700',
+                        desc: 'If Rodrigo has held a 482 for 3+ years in the same role, the 186 Transition Stream offers a pathway to permanent residency. His wife would be included as a secondary applicant. Confirm employment tenure and employer nomination intent.',
+                      },
+                      {
+                        subclass: 'Subclass 820/801 — Partner Visa',
+                        fit: 'Alternative',
+                        fitColor: 'bg-warm-grey text-forest/60',
+                        desc: 'If the 482 secondary applicant pathway has complications, the Partner visa provides an independent pathway to permanent residency based solely on the marriage. Longer processing time but a permanent outcome independent of the employer.',
+                      },
+                    ].map((pathway, i) => (
+                      <div key={i} className="rounded-lg border border-warm-grey bg-surface p-4">
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <p className="text-forest text-sm font-semibold leading-snug">{pathway.subclass}</p>
+                          <span className={`text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0 ${pathway.fitColor}`}>{pathway.fit}</span>
+                        </div>
+                        <p className="text-forest/55 text-xs leading-relaxed">{pathway.desc}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
+
+                {/* Missing information */}
+                <div>
+                  <p className="text-forest/35 text-[10px] uppercase tracking-wider mb-2">Missing Information</p>
+                  <ul className="space-y-1.5">
+                    {[
+                      "Wife's full name, date of birth, and nationality.",
+                      "Wife's current Student Visa subclass and exact expiry date.",
+                      "Whether wife has any health or character concerns.",
+                      "Rodrigo's own visa status (482 holder, PR, or Australian citizen).",
+                      "Employer's current Labour Market Testing record and sponsorship renewal date.",
+                      "Nominated occupation and ANZSCO code for Rodrigo's Software Engineer role.",
+                      "Any specific timeline pressure beyond wife's student visa expiry.",
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-xs text-forest/55 leading-relaxed">
+                        <span className="w-1 h-1 rounded-full bg-forest/25 flex-shrink-0 mt-1.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Next steps */}
+                <div>
+                  <p className="text-forest/35 text-[10px] uppercase tracking-wider mb-2">Next Steps</p>
+                  <ol className="space-y-1.5">
+                    {[
+                      "Confirm Rodrigo's current visa status to determine which sponsorship pathway applies.",
+                      "Obtain wife's Student Visa details — subclass, expiry date, and any conditions on work/study.",
+                      "Confirm employer's sponsorship status is current and the nominated occupation is correct.",
+                      "Assess whether wife qualifies for an onshore 482 application or must depart first.",
+                      "Discuss timeline given wife's student visa and prioritise lodgement accordingly.",
+                    ].map((step, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-xs text-forest/55 leading-relaxed">
+                        <span className="text-emerald font-bold flex-shrink-0 w-4">{i + 1}.</span>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
                 <a
                   href="mailto:info@migro.com.au"
                   className="block text-center py-2.5 px-4 rounded-[6px] bg-emerald hover:bg-emerald-hover text-white font-semibold text-sm transition-colors duration-200"
@@ -596,7 +699,7 @@ function Phase2() {
               key="placeholder"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="rounded-xl border-2 border-dashed border-warm-grey min-h-[320px] flex items-center justify-center"
+              className="rounded-xl border-2 border-dashed border-warm-grey min-h-[160px] flex items-center justify-center"
             >
               <div className="text-center px-6">
                 <div className="w-8 h-8 rounded-full border-2 border-warm-grey/50 border-t-forest/20 animate-spin mx-auto mb-3" />
@@ -783,7 +886,7 @@ export default function DemoPage() {
         <div className="max-w-5xl mx-auto text-center border-t border-warm-grey pt-12">
           <p className="text-forest/45 text-base mb-4">Ready to use the real thing?</p>
           <a
-            href="/#waitlist"
+            href="mailto:info@migro.com.au"
             className="inline-block px-8 py-3 rounded-[6px] bg-emerald hover:bg-emerald-hover text-white font-semibold text-sm transition-colors duration-200"
           >
             Join the Waitlist
