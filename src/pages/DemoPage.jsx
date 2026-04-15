@@ -586,7 +586,7 @@ function Phase2() {
                       <svg className="w-3.5 h-3.5 text-forest/30 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
-                      roberto.gutierrez@gmail.com
+                      rodrigo.gutierrez@email.com
                     </div>
                   </div>
                 </div>
@@ -614,57 +614,39 @@ function Phase2() {
                 {/* Recommended pathways */}
                 <div>
                   <p className="text-forest/35 text-[10px] uppercase tracking-wider mb-3">Recommended Pathways</p>
-                  <div className="space-y-3">
-                    {[
-                      {
-                        subclass: 'Subclass 482 — Temporary Skills Shortage (Secondary Applicant)',
-                        fit: 'Strong fit',
-                        fitColor: 'bg-emerald-tint text-emerald',
-                        desc: "Rodrigo's employer holds approved sponsorship status. His wife qualifies as a secondary applicant on the 482. As she is currently onshore on a Student Visa, she may be eligible to apply without departing Australia, subject to visa conditions.",
-                      },
-                      {
-                        subclass: 'Subclass 186 — Employer Nomination Scheme (Transition Stream)',
-                        fit: 'Possible',
-                        fitColor: 'bg-amber-50 text-amber-700',
-                        desc: 'If Rodrigo has held a 482 for 3+ years in the same role, the 186 Transition Stream offers a pathway to permanent residency. His wife would be included as a secondary applicant. Confirm employment tenure and employer nomination intent.',
-                      },
-                      {
-                        subclass: 'Subclass 820/801 — Partner Visa',
-                        fit: 'Alternative',
-                        fitColor: 'bg-warm-grey text-forest/60',
-                        desc: 'If the 482 secondary applicant pathway has complications, the Partner visa provides an independent pathway to permanent residency based solely on the marriage. Longer processing time but a permanent outcome independent of the employer.',
-                      },
-                    ].map((pathway, i) => (
-                      <div key={i} className="rounded-lg border border-warm-grey bg-surface p-4">
-                        <div className="flex items-start justify-between gap-3 mb-2">
-                          <p className="text-forest text-sm font-semibold leading-snug">{pathway.subclass}</p>
-                          <span className={`text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0 ${pathway.fitColor}`}>{pathway.fit}</span>
-                        </div>
-                        <p className="text-forest/55 text-xs leading-relaxed">{pathway.desc}</p>
-                      </div>
-                    ))}
+                  <div className="rounded-lg border border-warm-grey bg-surface p-4">
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <p className="text-forest text-sm font-semibold leading-snug">Subclass 482 — Temporary Skills Shortage (Secondary Applicant)</p>
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0 bg-emerald-tint text-emerald">Strong fit</span>
+                    </div>
+                    <p className="text-forest/55 text-xs leading-relaxed">Rodrigo's employer holds approved sponsorship status. His wife qualifies as a secondary applicant on the 482. As she is currently onshore on a Student Visa, she may be eligible to apply without departing Australia, subject to visa conditions.</p>
                   </div>
                 </div>
 
                 {/* Missing information */}
                 <div>
-                  <p className="text-forest/35 text-[10px] uppercase tracking-wider mb-2">Missing Information</p>
-                  <ul className="space-y-1.5">
+                  <p className="text-forest text-sm font-semibold mb-3">Missing Information</p>
+                  <div className="rounded-xl border border-warm-grey overflow-hidden">
+                    <div className="flex items-center px-4 py-2.5 bg-warm-grey/50 border-b border-warm-grey">
+                      <span className="flex-1 text-forest/45 text-xs font-medium">Item</span>
+                      <span className="text-forest/45 text-xs font-medium w-36 text-right">Required for</span>
+                    </div>
                     {[
-                      "Wife's full name, date of birth, and nationality.",
-                      "Wife's current Student Visa subclass and exact expiry date.",
-                      "Whether wife has any health or character concerns.",
-                      "Rodrigo's own visa status (482 holder, PR, or Australian citizen).",
-                      "Employer's current Labour Market Testing record and sponsorship renewal date.",
-                      "Nominated occupation and ANZSCO code for Rodrigo's Software Engineer role.",
-                      "Any specific timeline pressure beyond wife's student visa expiry.",
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-forest/55 leading-relaxed">
-                        <span className="w-1 h-1 rounded-full bg-forest/25 flex-shrink-0 mt-1.5" />
-                        {item}
-                      </li>
+                      { item: "Wife's full name, date of birth, and nationality",        req: 'Application form' },
+                      { item: "Wife's Student Visa subclass and exact expiry date",       req: 'Onshore eligibility' },
+                      { item: "Whether wife has health or character concerns",            req: 'Health / character' },
+                      { item: "Rodrigo's own visa status (482, PR, or citizen)",          req: 'Sponsorship pathway' },
+                      { item: "Employer's Labour Market Testing record + renewal date",   req: 'Sponsor compliance' },
+                      { item: "Nominated occupation and ANZSCO code",                    req: 'Skills match' },
+                      { item: "Timeline pressure beyond wife's student visa expiry",      req: 'Urgency assessment' },
+                    ].map((row, i) => (
+                      <div key={i} className={`flex items-start gap-3 px-4 py-3 border-b border-warm-grey/50 last:border-0 ${i % 2 === 1 ? 'bg-warm-grey/20' : ''}`}>
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0 mt-1.5" />
+                        <span className="text-forest/70 text-xs leading-relaxed flex-1">{row.item}</span>
+                        <span className="text-forest/35 text-xs flex-shrink-0 w-36 text-right">{row.req}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 {/* Next steps */}
