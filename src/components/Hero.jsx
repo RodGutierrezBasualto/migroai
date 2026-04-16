@@ -181,7 +181,7 @@ export default function Hero() {
               className="flex items-center gap-2 mb-6"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse-slow flex-shrink-0" />
-              <span className="text-forest/50 text-sm">Coming soon · Built for MARA-registered agents</span>
+              <span className="text-forest/50 text-sm">Join now · Built for MARA-registered agents</span>
             </motion.div>
 
             <motion.h1
@@ -190,7 +190,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-forest font-display"
             >
-              Intelligent Intake<br />
+              Artificial Intelligence<br />
               <span className="text-emerald">for Migration Agents.</span>
             </motion.h1>
 
@@ -200,7 +200,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-forest/60 text-lg leading-relaxed mb-8 max-w-md"
             >
-              Migro gives every MARA agent their own AI-powered intake assistant — qualifying leads, collecting documents, and assessing visa pathways before you pick up the phone.
+              Migro gives every MARA agent their own compliant AI-powered assistant — qualifying leads, collecting documents, and assessing visa pathways before you pick up the phone.
             </motion.p>
 
             <motion.div
