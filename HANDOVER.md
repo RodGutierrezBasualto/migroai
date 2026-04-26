@@ -1,7 +1,22 @@
 # Migro Landing Page — Handover
 
 ## What this is
-A pre-launch marketing landing page for **Migro** — an AI-powered intake SaaS for MARA-registered migration agents in Australia. One-page React/Vite site, live at **migro.com.au** via Netlify.
+
+A pre-launch marketing website for **Migro** — an AI-powered intake and document intelligence SaaS for MARA-registered migration agents in Australia. Built in React + Vite, live at **migro.com.au** via Netlify.
+
+The site is a multi-page SPA (not Next.js). It is a pure marketing/waitlist site — there is no backend, no database, no auth. The only external API call is the HubSpot waitlist form submission.
+
+---
+
+## Accounts & Access
+
+| Service | Account email | Notes |
+|---|---|---|
+| GitHub | coopercine@gmail.com | Repo: `github.com/RodGutierrezBasualto/migroai` |
+| Netlify | coopercine@gmail.com | Site: migro-ai or similar; auto-deploys from `main` |
+| HubSpot | coopercine@gmail.com | Portal ID: `43908838` — waitlist form submissions land here |
+| GoDaddy | coopercine@gmail.com | Domain `migro.com.au` — nameservers pointed to Netlify DNS |
+| Google Analytics | coopercine@gmail.com | Measurement ID: `G-3GPD2RPR3D` — GA4 property |
 
 ---
 
@@ -10,31 +25,142 @@ A pre-launch marketing landing page for **Migro** — an AI-powered intake SaaS 
 | Layer | Tool |
 |---|---|
 | Framework | React 18 + Vite 5 |
+| Routing | React Router DOM v7 (BrowserRouter) |
 | Styling | Tailwind CSS v3 (custom design tokens) |
 | Animations | Framer Motion 11 |
 | Fonts | Fraunces (display/headings) + DM Sans (body) via Google Fonts |
-| Deployment | Netlify (auto-deploy from GitHub) |
-| Waitlist form | HubSpot Forms API v3 (no embed, no branding) |
-| Domain | migro.com.au on GoDaddy — nameservers pointed to Netlify |
+| Deployment | Netlify (auto-deploy from GitHub `main`) |
+| Waitlist form | HubSpot Forms API v3 (direct POST, no embed/branding) |
+| Analytics | Google Analytics 4 (`G-3GPD2RPR3D`) — gtag.js in `index.html` |
+| Domain | migro.com.au on GoDaddy — nameservers → Netlify |
+| Legal entity | Integrated Platforms Pty Ltd (ABN 69 693 247 513) |
+
+---
+
+## Repository
+
+- **GitHub repo**: `https://github.com/RodGutierrezBasualto/migroai`
+- **Branch**: `main` (only branch; Netlify deploys from here)
+- **Clone**: `git clone https://github.com/RodGutierrezBasualto/migroai.git`
+
+---
+
+## Setting Up on a New Machine
+
+```bash
+# 1. Clone
+git clone https://github.com/RodGutierrezBasualto/migroai.git
+cd migroai
+
+# 2. Install dependencies
+npm install
+
+# 3. Create .env file (not in git)
+echo "VITE_HS_PORTAL_ID=43908838" > .env
+echo "VITE_HS_FORM_ID=e960c419-dbb7-437d-be71-74fe56cf68cb" >> .env
+
+# 4. Run dev server
+npm run dev        # → http://localhost:5173
+
+# 5. Build for production
+npm run build      # → dist/
+```
+
+> The `.env` file is git-excluded. You must create it manually on every new machine. Values are above — they are not secret (public HubSpot submission endpoint), but keep them out of git anyway.
+
+---
+
+## Deployment
+
+### Netlify (production)
+- Auto-deploys on every push to `main` (takes ~1–2 min)
+- Build command: `npm run build`
+- Publish dir: `dist`
+- `netlify.toml` in project root handles SPA redirect (prevents 404 on hard refresh)
+- Env vars `VITE_HS_PORTAL_ID` and `VITE_HS_FORM_ID` are set in Netlify dashboard → do not need to re-add for normal deploys, only if site is re-created from scratch
+- **Important**: Vite bakes env vars at build time. After changing env vars in Netlify, trigger a manual redeploy from the Netlify dashboard
+
+### Deploy workflow
+```bash
+git add <files>
+git commit -m "message"
+git push origin main
+# Netlify auto-deploys in ~1-2 minutes
+```
+
+### DNS
+- GoDaddy: `migro.com.au` nameservers replaced with Netlify's 4 nameservers
+- SSL auto-provisioned by Netlify (Let's Encrypt)
+- No DNS config needed on a new machine — it's all server-side
+
+---
+
+## Project Structure
+
+```
+website-migro/
+├── index.html              ← entry point; GA4 script lives here
+├── vite.config.js
+├── tailwind.config.js      ← custom design tokens (colors, fonts, animations)
+├── postcss.config.js
+├── netlify.toml            ← SPA redirect rule
+├── .env                    ← git-excluded; create manually (HubSpot IDs)
+├── public/
+│   └── logos/              ← certification/partner logos (must be committed or 404 on Netlify)
+│       ├── star-level-one.png
+│       ├── star-for-ai-level-one.png
+│       ├── google-cloud.png
+│       ├── vertex-ai.svg
+│       ├── firebase.png         (unused on page)
+│       └── CloudRun-512-color-rgb.png
+└── src/
+    ├── main.jsx            ← React entry, mounts App
+    ├── App.jsx             ← Router + layout shell; defines all routes
+    ├── index.css           ← global CSS (Tailwind base)
+    ├── components/
+    │   ├── Navbar.jsx      ← fixed top nav; transparent → white on scroll; links to /demo /pricing /about
+    │   ├── Hero.jsx        ← headline + animated chat widget (Maria Santos intake conversation)
+    │   ├── DashboardSection.jsx  ← animated agent dashboard mockup (3-screen loop)
+    │   ├── FeaturesSection.jsx   ← 3 feature rows, alternating layout, pure JSX mockups
+    │   ├── HowItWorks.jsx  ← 3-step process section
+    │   ├── CredibilityStrip.jsx  ← security/compliance section (dark bg, logos)
+    │   ├── WaitlistSection.jsx   ← email form → HubSpot API
+    │   ├── Footer.jsx      ← dark footer, nav links, legal line
+    │   ├── PricingSection.jsx    ← EXISTS but NOT rendered (hidden intentionally)
+    │   └── ProblemSection.jsx    ← EXISTS but NOT rendered (hidden intentionally)
+    └── pages/
+        ├── PricingPage.jsx ← /pricing route: cards + top-up tables + comparison table + FAQ
+        ├── AboutPage.jsx   ← /about route
+        └── DemoPage.jsx    ← /demo route: interactive 3-phase product walkthrough
+```
+
+### Routes
+| Path | Component | Notes |
+|---|---|---|
+| `/` | `HomePage` (inline in App.jsx) | Full landing page |
+| `/pricing` | `PricingPage.jsx` | 3-tier pricing + comparison table + FAQ |
+| `/about` | `AboutPage.jsx` | Founder + company info |
+| `/demo` | `DemoPage.jsx` | Interactive product demo walkthrough |
 
 ---
 
 ## Design System
 
-### Colors (tailwind.config.js)
+### Colors (`tailwind.config.js`)
 | Token | Hex | Usage |
 |---|---|---|
-| `forest` | `#1A2B1A` | Primary text, dark sections bg |
+| `forest` | `#1A2B1A` | Primary text, dark section backgrounds |
 | `emerald` | `#2D6A2D` | Primary accent, buttons, links |
 | `emerald-hover` | `#245A24` | Button hover state |
-| `emerald-tint` | `#E8F2E8` | Subtle bg tints (use sparingly) |
+| `emerald-tint` | `#E8F2E8` | Subtle background tints |
 | `off-white` | `#F5F4F0` | Page background |
 | `warm-grey` | `#EFEDE8` | Alternate section bg, borders |
 | `surface` | `#FFFFFF` | Cards, white panels |
 
 ### Typography
-- **Headings/display**: `font-display` → Fraunces (serif, weight 400–700)
-- **Body/UI**: `font-sans` → DM Sans (weight 300–600)
+- **Headings/display**: `font-display` → Fraunces (serif, weights 400–700)
+- **Body/UI**: `font-sans` → DM Sans (weights 300–600)
+- Fonts loaded via Google Fonts in `index.html`
 
 ### Shadows
 - `shadow-warm` — `0 2px 12px rgba(26,43,26,0.08)` (cards)
@@ -49,146 +175,59 @@ No gradients, no glow, no shadows.
 ### Animation patterns
 - **State-driven reveal**: `useState` counter increments over time; items render when `index < visibleCount`
 - **Typewriter**: `setInterval` at 20ms/char revealing `text.slice(0, i)` progressively
-- **Framer Motion fade-in**: `initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}` on each new element
+- **Framer Motion fade-in**: `initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}`
 - **Progress bars**: `initial={{ width: 0 }} animate={{ width: '${n}%' }}` — Framer interpolates CSS width
 - **Screen transitions**: `setTimeout` chains drive screen changes; timers stored in array and cleared on unmount
 
 ---
 
-## Page Structure (App.jsx)
+## Analytics
 
-```
-Navbar
-Hero              ← animated chat widget (Maria Santos conversation) + CTAs
-DashboardSection  ← animated agent dashboard mockup (3-screen loop)
-FeaturesSection   ← 3 feature rows with inline JSX mockup visuals
-HowItWorks        ← 3 steps
-CredibilityStrip  ← security/compliance section (dark forest bg)
-WaitlistSection   ← email form → HubSpot
-Footer
-```
-
-> `ProblemSection.jsx` and `PricingSection.jsx` exist in `/src/components/` but are **not rendered** — removed intentionally. Re-add to `App.jsx` when needed.
+- **Platform**: Google Analytics 4
+- **Measurement ID**: `G-3GPD2RPR3D`
+- **Implementation**: Two `<script>` tags in `index.html` `<head>` (async gtag.js snippet)
+- **Account**: coopercine@gmail.com on analytics.google.com
+- No custom events wired up — standard pageview tracking only
 
 ---
 
-## Components
+## HubSpot Waitlist Form
 
-### Hero.jsx
-- Left: headline, subheadline, CTA buttons, trust strip
-- Right: animated chat widget — full Maria Santos intake conversation (13 messages)
-- ChatWidget features: typewriter on bot messages, file upload bubbles (paperclip icon), auto-scrolling message container (`h-64 overflow-y-auto`), assessment card at end
-- Scroll uses `messagesRef.current.scrollTop = scrollHeight` — scoped to container, does NOT trigger page scroll
-- Assessment card shows Subclass 186 (88%) and 189 (76%) with animated bars
-- Callout below widget: plain text, no pills/badges
-
-### DashboardSection.jsx
-- Animated mockup of the agent-facing Migro dashboard
-- Three screens cycle in a loop: **Dashboard list → Case detail → Documents**
-- Layout: `aspect-square max-w-xl mx-auto` — square at all screen sizes, no horizontal scroll
-- Sidebar: `w-10` on mobile (dot indicators only) / `w-36 sm:+` (full labels, white text)
-- Dashboard table hides Visa column on mobile; keeps Date / Applicant / Status
-- Timing: dashboard rows appear sequentially → transition to detail → assessment bars animate → transition to docs → stat cards + doc rows appear → loop back
-
-### FeaturesSection.jsx
-- 3 features with alternating left/right layout
-- Feature 1: AI Intake Widget (step checklist mockup)
-- Feature 2: Automated Assessment (visa pathway progress bars)
-- Feature 3: Secure Document Collection (file list with status)
-- All mockups are pure JSX — no images, no screenshots
-- Feature tags: plain `text-forest/40` text (no pill badges)
-- Checkmarks replaced with em dashes `–`
-
-### CredibilityStrip.jsx
-- Full-width dark section (`bg-forest`) — the main trust/security section
-- Heading: "Built secure. Compliant by design."
-- Four security pillars (2×2 on mobile, 4-col on desktop): Data Residency, Encryption, AI Privacy, Compliance
-- Static logo row: CSA STAR Level One, CSA STAR for AI Level One, Google Cloud, Vertex AI
-- Logo files live in `public/logos/` (committed to git — must commit new logos or they 404 on Netlify)
-- Footer note about Google Cloud's ISO 27001 / SOC 2 / PCI DSS / IRAP certifications
-
-### WaitlistSection.jsx
-- Email input → POST to HubSpot Forms API v3
-- Env vars: `VITE_HS_PORTAL_ID=43908838`, `VITE_HS_FORM_ID=e960c419-dbb7-437d-be71-74fe56cf68cb`
-- Error state renders red message below form; success shows confirmation
-- "Early access · Limited spots" rendered as plain text with pulse dot (no pill)
+- **Portal ID**: `43908838`
+- **Form ID**: `e960c419-dbb7-437d-be71-74fe56cf68cb`
+- **API endpoint**: `https://api.hsforms.com/submissions/v3/integration/submit/{portalId}/{formId}`
+- No API key required (public submission endpoint)
+- **Domain allowlist**: submissions from non-whitelisted domains are silently tagged as spam. Currently `migro.com.au` and `migro.netlify.app` are whitelisted. Add new domains at: HubSpot → Settings → Privacy & Consent → Allowlist
+- To view submissions: HubSpot → Marketing → Forms → [form] → Submissions tab
 
 ---
 
 ## Assets
 
-### public/logos/
-All certification/infrastructure logos. Must be committed to git or they 404 on Netlify.
+All logo/certification images live in `public/logos/`. They **must be committed to git** or they will 404 on Netlify (Netlify only serves files that exist in the build output).
 
-| File | Usage |
-|---|---|
-| `star-level-one.png` | CSA STAR Level One badge |
-| `star-for-ai-level-one.png` | CSA STAR for AI Level One badge |
-| `google-cloud.png` | Google Cloud logo |
-| `vertex-ai.svg` | Powered by Vertex AI logo |
-| `firebase.png` | Firebase logo (not currently used on page) |
-
-> **Rule**: always use URL-safe filenames (no spaces). Files with spaces in names cause 404s in production even if they load locally.
+Always use URL-safe filenames — no spaces. Files with spaces 404 in production even if they load locally.
 
 ---
 
-## Deployment
+## Business Context
 
-### Netlify
-- Repo: `github.com/RodGutierrezBasualto/migroai` — auto-deploys on push to `main`
-- Build command: `npm run build` / Publish dir: `dist`
-- Config: `netlify.toml` in project root (handles SPA redirect — prevents 404 on hard refresh)
-- Env vars set in Netlify dashboard: `VITE_HS_PORTAL_ID`, `VITE_HS_FORM_ID`
-- **Important**: Vite bakes env vars at build time — after changing env vars in Netlify, trigger a manual redeploy
-
-### Deploy workflow
-```bash
-git add <files>
-git commit -m "message"
-git push origin main
-# Netlify auto-deploys in ~1-2 minutes
-```
-
-### GoDaddy → Netlify DNS
-- GoDaddy nameservers replaced with Netlify's 4 nameservers
-- SSL auto-provisioned by Netlify (Let's Encrypt)
-
----
-
-## HubSpot Form
-
-- Form ID: `e960c419-dbb7-437d-be71-74fe56cf68cb`
-- Portal ID: `43908838`
-- API endpoint: `https://api.hsforms.com/submissions/v3/integration/submit/{portalId}/{formId}`
-- No API key needed (public submission endpoint)
-- **Domain must be whitelisted**: submissions from non-whitelisted domains are silently tagged as spam. Add at: HubSpot → Settings → Privacy & Consent → Allowlist. Currently `migro.com.au` and `migro.netlify.app` are whitelisted.
-- To view submissions: HubSpot → Marketing → Forms → [form] → Submissions tab
-
----
-
-## Local Development
-
-```bash
-cd /Users/rod/Documents/website-migro
-npm install
-npm run dev        # http://localhost:5173
-npm run build      # outputs to dist/
-```
-
-Requires a `.env` file in project root (git-excluded, already created):
-```
-VITE_HS_PORTAL_ID=43908838
-VITE_HS_FORM_ID=e960c419-dbb7-437d-be71-74fe56cf68cb
-```
+- **Product**: Migro — AI-powered document intelligence and intake agent for MARA-registered migration agents
+- **Legal entity**: Integrated Platforms Pty Ltd — ABN 69 693 247 513 — Bondi Beach, NSW 2026
+- **Founder/CEO**: Rodrigo Gutierrez
+- **Contact**: info@migro.com.au
+- **Target market**: Australian MARA-registered migration agents; initial focus NSW sole practitioners
+- **Infrastructure**: Google Cloud Sydney (australia-southeast1), Vertex AI (Gemini 1.5 Pro)
+- **Security**: CSA STAR Level 1, CSA STAR for AI Level 1, ASD Cyber Security Business Partner
 
 ---
 
 ## Known Omissions / Future Work
 
-- **Pricing section**: `PricingSection.jsx` exists but is hidden — re-add to `App.jsx` when pricing is confirmed
-- **Problem section**: `ProblemSection.jsx` exists but removed — can be re-added if narrative needs it
-- **Privacy Policy / Terms**: No legal pages — needed before broader launch
-- **Analytics**: No tracking installed (no GA, no Plausible, etc.)
-- **OG / social meta tags**: `index.html` has basic title but no og:image, og:description, Twitter card
-- **Mobile nav**: Navbar has no hamburger menu — logo + CTA only on mobile
-- **Additional certifications**: More logos can be added to `public/logos/` and the array in `CredibilityStrip.jsx`
+- **Pricing section component** (`PricingSection.jsx`): exists in `/src/components/` but not rendered — re-add to `App.jsx` when needed
+- **Problem section** (`ProblemSection.jsx`): exists but removed — can be re-added
+- **Privacy Policy / Terms**: no legal pages — needed before broader launch
+- **Mobile nav**: no hamburger menu — logo + CTA only on mobile
+- **OG / social meta tags**: basic title in `index.html` but no `og:image`, `og:description`, or Twitter card
+- **GA4 custom events**: only standard pageview tracking; no button click / form submit events wired yet
+- **Additional certifications**: more logos can be added to `public/logos/` and the array in `CredibilityStrip.jsx`
