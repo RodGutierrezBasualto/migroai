@@ -36,7 +36,7 @@ export default function Footer() {
                 <div className="space-y-2">
                   <Link to="/pricing" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Pricing</Link>
                   <a href="/#how-it-works" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">How it works</a>
-                  <a href="mailto:info@migro.com.au" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Join waitlist</a>
+                  <a href="https://app.migro.com.au/signup" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Start free today</a>
                 </div>
               </div>
               <div>

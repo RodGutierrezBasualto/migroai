@@ -16,8 +16,8 @@ const plans = [
       '12-month dashboard history',
       '1 team member',
     ],
-    cta: 'Get Started',
-    ctaHref: 'mailto:info@migro.com.au',
+    cta: 'Get started free',
+    ctaHref: 'https://app.migro.com.au/signup',
     ctaStyle: 'outline',
   },
   {
@@ -33,13 +33,14 @@ const plans = [
       'All visa subclasses',
       '12-month dashboard history',
       'Credit top-ups available',
+      '$1.25 / credit overage',
       'Data Processing Agreement',
       'MARA compliance report',
       'Email support',
       '1 team member',
     ],
-    cta: 'Get Started',
-    ctaHref: 'mailto:info@migro.com.au',
+    cta: 'Start free today',
+    ctaHref: 'https://app.migro.com.au/signup',
     ctaStyle: 'solid',
   },
   {
@@ -51,13 +52,14 @@ const plans = [
     features: [
       '300 credits / month',
       'Everything in Solo',
+      '$0.85 / credit overage',
       'Better top-up rates',
       '12-month dashboard history',
       'Priority support',
       'Up to 3 team members',
     ],
-    cta: 'Get Started',
-    ctaHref: 'mailto:info@migro.com.au',
+    cta: 'Start free today',
+    ctaHref: 'https://app.migro.com.au/signup',
     ctaStyle: 'outline',
   },
 ]
@@ -131,8 +133,17 @@ export default function PricingPage() {
         </motion.div>
       </section>
 
+      {/* Promo banner */}
+      <section className="pb-2 px-6">
+        <div className="max-w-4xl mx-auto px-5 py-3 bg-emerald-tint border border-emerald/20 rounded-lg text-center">
+          <p className="text-emerald text-sm font-semibold">
+            First 20 agents get their first month free — use code <span className="font-bold">MIGRO_100_OFF</span> at signup.
+          </p>
+        </div>
+      </section>
+
       {/* Pricing cards */}
-      <section className="pb-20 px-6">
+      <section className="pb-20 px-6 pt-6">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
           {plans.map((plan, i) => (
             <motion.div
@@ -196,7 +207,7 @@ export default function PricingPage() {
             <h2 className="text-2xl font-bold text-forest mb-2">Credit Top-Ups</h2>
             <p className="text-forest/50 text-sm mb-8">Need more credits mid-month? Buy top-ups any time. Credits never expire.</p>
             <div className="grid md:grid-cols-2 gap-6">
-              {/* Solo & Design Partner */}
+              {/* Solo */}
               <div className="bg-surface rounded-xl border border-warm-grey overflow-hidden">
                 <div className="px-5 py-3 border-b border-warm-grey bg-warm-grey/50">
                   <p className="text-forest text-sm font-semibold">Solo</p>
@@ -348,10 +359,10 @@ export default function PricingPage() {
             <h2 className="text-white text-3xl font-bold font-display mb-2">Start Free Today.</h2>
             <p className="text-white/55 text-lg mb-8">No credit card required.</p>
             <a
-              href="mailto:info@migro.com.au"
+              href="https://app.migro.com.au/signup"
               className="inline-block px-8 py-3 rounded-[6px] bg-white text-forest font-semibold text-sm hover:bg-off-white transition-colors duration-200"
             >
-              Get Started
+              Start free today
             </a>
           </motion.div>
         </div>

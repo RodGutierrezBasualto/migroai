@@ -868,10 +868,10 @@ export default function DemoPage() {
         <div className="max-w-5xl mx-auto text-center border-t border-warm-grey pt-12">
           <p className="text-forest/45 text-base mb-4">Ready to use the real thing?</p>
           <a
-            href="mailto:info@migro.com.au"
+            href="https://app.migro.com.au/signup"
             className="inline-block px-8 py-3 rounded-[6px] bg-emerald hover:bg-emerald-hover text-white font-semibold text-sm transition-colors duration-200"
           >
-            Join the Waitlist
+            Start free today
           </a>
         </div>
       </section>

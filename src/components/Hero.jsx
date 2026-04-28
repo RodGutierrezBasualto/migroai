@@ -190,8 +190,8 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-forest font-display"
             >
-              Artificial Intelligence<br />
-              <span className="text-emerald">for Migration Agents.</span>
+              The only AI built specifically<br />
+              <span className="text-emerald">for Australian migration agents.</span>
             </motion.h1>
 
             <motion.p
@@ -200,7 +200,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-forest/60 text-lg leading-relaxed mb-8 max-w-md"
             >
-              Migro gives every MARA agent their own compliant AI-powered assistant — qualifying leads, collecting documents, and assessing visa pathways before you pick up the phone.
+              Analyse client documents, flag what's expired, catch what's missing, and cite the exact Migration Regulations clause — all in under two minutes. Built for MARA compliance from day one.
             </motion.p>
 
             <motion.div
@@ -210,10 +210,10 @@ export default function Hero() {
               className="flex flex-wrap gap-4"
             >
               <a
-                href="mailto:info@migro.com.au"
+                href="https://app.migro.com.au/signup"
                 className="px-6 py-3 rounded-[6px] bg-emerald hover:bg-emerald-hover text-white font-semibold text-sm transition-colors duration-200"
               >
-                Join the Waitlist
+                Start free today
               </a>
               <a
                 href="#how-it-works"
@@ -222,6 +222,10 @@ export default function Hero() {
                 See how it works ↓
               </a>
             </motion.div>
+
+            <p className="text-forest/35 text-xs mt-5 max-w-md leading-relaxed">
+              First 20 agents get their first month free. Use code MIGRO_100_OFF at signup. No credit card required. Data never leaves Australia.
+            </p>
 
 
           </div>

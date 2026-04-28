@@ -60,10 +60,10 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="mailto:info@migro.com.au"
+          href="https://app.migro.com.au/signup"
           className="px-5 py-2 rounded-[6px] bg-emerald hover:bg-emerald-hover text-white font-semibold text-sm transition-colors duration-200"
         >
-          Join Waitlist
+          Start free today
         </a>
       </div>
     </motion.nav>

@@ -15,6 +15,19 @@ function HomePage() {
   return (
     <>
       <Hero />
+
+      <section className="bg-off-white py-12 px-6">
+        <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '800px', margin: '0 auto', borderRadius: '8px' }}>
+          <iframe
+            src="https://www.youtube.com/embed/lOR3Wjybbqc"
+            title="Migro — The only AI built for Australian migration agents"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+          />
+        </div>
+      </section>
+
       <DashboardSection />
       <WaitlistSection />
       <FeaturesSection />
