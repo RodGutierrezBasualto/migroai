@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import AnnouncementBand from './components/AnnouncementBand'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-off-white overflow-x-hidden">
+        <AnnouncementBand />
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

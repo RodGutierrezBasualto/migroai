@@ -169,7 +169,7 @@ function ChatWidget() {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-off-white pt-20">
+    <section className="relative min-h-screen flex items-center bg-off-white pt-36">
       <div className="max-w-6xl mx-auto px-6 py-24 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Copy */}
@@ -222,11 +222,6 @@ export default function Hero() {
                 See how it works ↓
               </a>
             </motion.div>
-
-            <p className="text-forest/35 text-xs mt-5 max-w-md leading-relaxed">
-              First 20 agents get their first month free. Use code MIGRO_100_OFF at signup. No credit card required. Data never leaves Australia.
-            </p>
-
 
           </div>
 

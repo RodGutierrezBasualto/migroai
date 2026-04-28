@@ -3,17 +3,6 @@ import { motion } from 'framer-motion'
 const steps = [
   {
     number: '01',
-    title: 'Embed on your site',
-    desc: "Add a single line of code to your website. The Migro widget appears instantly — fully branded with your firm's logo and colours.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6"/>
-        <polyline points="8 6 2 12 8 18"/>
-      </svg>
-    ),
-  },
-  {
-    number: '02',
     title: 'AI qualifies and assesses',
     desc: 'Prospects chat with Migro 24/7. The AI gathers their details, runs a visa pathway assessment, flags red flags, and collects initial documents.',
     icon: (
@@ -24,7 +13,7 @@ const steps = [
     ),
   },
   {
-    number: '03',
+    number: '02',
     title: 'Review ready-to-action leads',
     desc: 'Your dashboard shows pre-assessed, pre-qualified leads with full profiles, documents, and confidence scores — ready for your expert review.',
     icon: (
@@ -63,7 +52,7 @@ export default function HowItWorks() {
             />
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6 relative">
+          <div className="grid lg:grid-cols-2 gap-6 relative max-w-3xl mx-auto">
             {steps.map((step, i) => (
               <motion.div
                 key={i}

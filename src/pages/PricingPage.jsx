@@ -111,7 +111,7 @@ export default function PricingPage() {
   const [openFaq, setOpenFaq] = useState(null)
 
   return (
-    <div className="bg-off-white pt-24">
+    <div className="bg-off-white pt-36">
 
       {/* Hero */}
       <section className="py-20 text-center px-6">
