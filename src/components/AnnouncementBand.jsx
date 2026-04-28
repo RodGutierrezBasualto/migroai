@@ -1,5 +1,5 @@
 export default function AnnouncementBand() {
-  const text = 'First 20 agents get their first month free. Use code MIGRO_100_OFF at signup.'
+  const text = 'First 50 agents get their first month free. Use code MIGRO_100_OFF at signup.'
   const repeated = Array(8).fill(text).join('   ·   ')
 
   return (
