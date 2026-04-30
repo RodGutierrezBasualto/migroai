@@ -19,15 +19,14 @@ function HomePage() {
       <Hero />
 
       <section className="bg-off-white py-12 px-6">
-        <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '800px', margin: '0 auto', borderRadius: '8px' }}>
+        <div style={{ position: 'relative', paddingTop: '56.25%', maxWidth: '800px', margin: '0 auto', borderRadius: '8px', overflow: 'hidden' }}>
           <iframe
-            src="https://player.vimeo.com/video/1187192236?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
+            src="https://player.mediadelivery.net/embed/650182/fe95e30b-9b25-4806-8187-05cce98fba4d?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+            loading="lazy"
+            style={{ border: 0, position: 'absolute', top: 0, left: 0, height: '100%', width: '100%' }}
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
             allowFullScreen
-            title="Migro final Hero promo 4k"
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            title="Migro product overview"
           />
         </div>
       </section>
