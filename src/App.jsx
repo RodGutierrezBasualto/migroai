@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import AnnouncementBand from './components/AnnouncementBand'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
@@ -46,7 +45,6 @@ function AppShell() {
 
   return (
     <div className={`min-h-screen overflow-x-hidden ${isFreemonth ? '' : 'bg-off-white'}`}>
-      {!isFreemonth && <AnnouncementBand />}
       {!isFreemonth && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />

@@ -169,7 +169,7 @@ function ChatWidget() {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-off-white pt-36">
+    <section className="relative min-h-screen flex items-center bg-off-white pt-24">
       <div className="max-w-6xl mx-auto px-6 py-24 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Copy */}

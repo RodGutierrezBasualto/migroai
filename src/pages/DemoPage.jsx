@@ -807,7 +807,7 @@ export default function DemoPage() {
   const [activeTab, setActiveTab] = useState('docs')
 
   return (
-    <div className="bg-off-white pt-36">
+    <div className="bg-off-white pt-24">
 
       {/* Hero */}
       <section className="py-16 text-center px-6">
