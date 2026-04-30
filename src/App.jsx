@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import AnnouncementBand from './components/AnnouncementBand'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -11,6 +11,7 @@ import WaitlistSection from './components/WaitlistSection'
 import PricingPage from './pages/PricingPage'
 import AboutPage from './pages/AboutPage'
 import DemoPage from './pages/DemoPage'
+import FreemonthPage from './pages/FreemonthPage'
 
 function HomePage() {
   return (
@@ -40,20 +41,30 @@ function HomePage() {
   )
 }
 
+function AppShell() {
+  const location = useLocation()
+  const isFreemonth = location.pathname === '/freemonth'
+
+  return (
+    <div className={`min-h-screen overflow-x-hidden ${isFreemonth ? '' : 'bg-off-white'}`}>
+      {!isFreemonth && <AnnouncementBand />}
+      {!isFreemonth && <Navbar />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/demo" element={<DemoPage />} />
+        <Route path="/freemonth" element={<FreemonthPage />} />
+      </Routes>
+      {!isFreemonth && <Footer />}
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-off-white overflow-x-hidden">
-        <AnnouncementBand />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/demo" element={<DemoPage />} />
-        </Routes>
-        <Footer />
-      </div>
+      <AppShell />
     </BrowserRouter>
   )
 }
