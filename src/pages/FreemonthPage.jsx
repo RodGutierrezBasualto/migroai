@@ -117,7 +117,7 @@ function VideoModal({ onClose }) {
             Sign Up Free
           </a>
           <p className="mt-3 font-sans text-sm leading-relaxed" style={{ color: '#555555' }}>
-            Create your free account and get your first month on Solo completely free. Worth $149.
+            Create your free account and get your first month on Pro completely free. Worth $199.
           </p>
         </div>
       </motion.div>
@@ -169,7 +169,7 @@ export default function FreemonthPage() {
               Sign Up Free – Get One Month Free
             </a>
             <p className="mt-4 font-sans text-sm" style={{ color: '#555555' }}>
-              Use code <strong style={{ color: '#1a2b1a' }}>MIGRO_100_OFF</strong> at checkout. First month on Solo ($149 value) completely free.
+              Use code <strong style={{ color: '#1a2b1a' }}>MIGRO_100_OFF</strong> at checkout. First month on Pro ($199 value) completely free.
             </p>
           </motion.div>
         </div>
@@ -219,7 +219,7 @@ export default function FreemonthPage() {
           </div>
           <div className="max-w-xs text-center sm:text-right">
             <p className="font-sans text-sm sm:text-base font-medium" style={{ color: '#1a2b1a' }}>
-              Free month offer ends tonight. 150 credits, full Document Intelligence access, no commitment.
+              Free month offer ends tonight. Full Document Intelligence access, no commitment.
             </p>
           </div>
         </div>
@@ -331,7 +331,7 @@ export default function FreemonthPage() {
             </p>
           </motion.div>
 
-          <div className="flex flex-col sm:grid sm:grid-cols-3 gap-6 sm:py-5 items-stretch">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-6 sm:py-5 items-stretch max-w-2xl mx-auto w-full">
 
             {/* Starter */}
             <motion.div
@@ -344,7 +344,7 @@ export default function FreemonthPage() {
             >
               <p className="font-display font-bold text-2xl text-forest mb-3">Starter</p>
               <p className="font-display font-bold text-5xl text-forest mb-1">Free</p>
-              <p className="font-sans text-sm mb-7" style={{ color: '#555555' }}>10 credits.</p>
+              <p className="font-sans text-sm mb-7" style={{ color: '#555555' }}>10 free credits to get started.</p>
               <ul className="flex-1 space-y-3 mb-8">
                 {['Try Document Intelligence', 'No time limit', 'No credit card required'].map(f => (
                   <li key={f} className="font-sans text-sm flex items-start gap-2.5" style={{ color: '#555555' }}>
@@ -362,7 +362,7 @@ export default function FreemonthPage() {
               </a>
             </motion.div>
 
-            {/* Solo */}
+            {/* Pro */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -392,17 +392,16 @@ export default function FreemonthPage() {
               </div>
 
               <div className="px-7 py-10 flex flex-col flex-1">
-                <p className="font-display font-bold text-2xl text-white mb-3">Solo</p>
+                <p className="font-display font-bold text-2xl text-white mb-3">Pro</p>
                 <div className="mb-1 flex items-baseline gap-1">
-                  <span className="font-display font-bold text-4xl text-white/40 line-through">$149</span>
+                  <span className="font-display font-bold text-4xl text-white/40 line-through">$199</span>
                   <span className="font-sans text-lg text-white/40 line-through">/month</span>
                 </div>
                 <p className="font-sans text-sm font-semibold mb-6" style={{ color: '#86efac' }}>
                   First month free with code MIGRO_100_OFF
                 </p>
-                <p className="font-sans text-sm mb-5" style={{ color: 'rgba(255,255,255,0.55)' }}>150 credits per month.</p>
                 <ul className="flex-1 space-y-3 mb-8">
-                  {['Full Document Intelligence', 'PDF and Excel export', 'MARA compliant', 'GCP Sydney'].map(f => (
+                  {['Full Document Intelligence', 'PDF and Excel export', 'MARA compliant', 'GCP Sydney', 'Connect to Claude, n8n, Make, and Zapier', 'API access available on request'].map(f => (
                     <li key={f} className="font-sans text-sm flex items-start gap-2.5" style={{ color: 'rgba(255,255,255,0.75)' }}>
                       <span className="mt-0.5 font-semibold" style={{ color: '#86efac' }}>–</span>
                       <span>{f}</span>
@@ -422,38 +421,6 @@ export default function FreemonthPage() {
               </div>
             </motion.div>
 
-            {/* Practice */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="order-3 rounded-xl p-8 flex flex-col"
-              style={{ background: '#f0fdf4', border: '1.5px solid #d1fae5' }}
-            >
-              <p className="font-display font-bold text-2xl text-forest mb-3">Practice</p>
-              <div className="mb-1 flex items-baseline gap-1">
-                <span className="font-display font-bold text-5xl text-forest">$199</span>
-                <span className="font-sans text-xl text-forest/50">/month</span>
-              </div>
-              <p className="font-sans text-sm mb-7" style={{ color: '#555555' }}>300 credits per month.</p>
-              <ul className="flex-1 space-y-3 mb-8">
-                {['Everything in Solo', 'Higher volume', 'Priority support'].map(f => (
-                  <li key={f} className="font-sans text-sm flex items-start gap-2.5" style={{ color: '#555555' }}>
-                    <span className="mt-0.5 font-semibold" style={{ color: '#15803d' }}>–</span>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={SIGNUP_URL}
-                className="block text-center py-3.5 px-4 rounded-lg font-sans font-semibold text-sm text-white transition-opacity hover:opacity-90"
-                style={{ background: '#15803d' }}
-              >
-                Get Started
-              </a>
-            </motion.div>
-
           </div>
         </div>
       </section>
@@ -471,7 +438,7 @@ export default function FreemonthPage() {
               Your first month is on us.
             </h2>
             <p className="font-sans text-base leading-relaxed mb-9" style={{ color: '#f0fdf4' }}>
-              Sign up free, then apply code MIGRO_100_OFF at checkout to unlock a full month on the Solo plan. 150 credits, full access, no commitment.
+              Sign up free, then apply code MIGRO_100_OFF at checkout to unlock a full month on the Pro plan. Full access, no commitment.
             </p>
             <a
               href={SIGNUP_URL}

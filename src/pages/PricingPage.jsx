@@ -9,7 +9,7 @@ const plans = [
     badge: null,
     highlight: false,
     features: [
-      '10 credits / month',
+      '10 free credits to get started',
       'Document Intelligence',
       'Intake Agent',
       'All visa subclasses',
@@ -21,21 +21,20 @@ const plans = [
     ctaStyle: 'outline',
   },
   {
-    name: 'Solo',
-    price: 'AUD $149',
+    name: 'Pro',
+    price: 'AUD $199',
     priceNote: '/ month',
     badge: 'Most Popular',
     highlight: true,
     features: [
-      '150 credits / month',
       'Document Intelligence',
       'Intake Agent',
       'All visa subclasses',
       '12-month dashboard history',
-      'Credit top-ups available',
-      '$1.25 / credit overage',
       'Data Processing Agreement',
       'MARA compliance report',
+      'Connect to Claude, n8n, Make, and Zapier',
+      'API access available on request',
       'Email support',
       '1 team member',
     ],
@@ -43,69 +42,32 @@ const plans = [
     ctaHref: 'https://app.migro.com.au/signup',
     ctaStyle: 'solid',
   },
-  {
-    name: 'Practice',
-    price: 'AUD $199',
-    priceNote: '/ month',
-    badge: null,
-    highlight: false,
-    features: [
-      '300 credits / month',
-      'Everything in Solo',
-      '$0.85 / credit overage',
-      'Better top-up rates',
-      '12-month dashboard history',
-      'Priority support',
-      'Up to 3 team members',
-    ],
-    cta: 'Start free today',
-    ctaHref: 'https://app.migro.com.au/signup',
-    ctaStyle: 'outline',
-  },
 ]
 
-
 const comparisonRows = [
-  { feature: 'Monthly price',             starter: 'Free',          solo: '$149/mo',      practice: '$199/mo' },
-  { feature: 'Credits included',          starter: '10',            solo: '150',          practice: '300' },
-  { feature: 'Overage rate',              starter: '—',             solo: '$1.25/credit', practice: '$0.85/credit' },
-  { feature: 'Document Intelligence',     starter: '✓',             solo: '✓',            practice: '✓' },
-  { feature: 'Intake Agent',              starter: '✓',             solo: '✓',            practice: '✓' },
-  { feature: 'Visa subclasses',           starter: 'All',           solo: 'All',          practice: 'All' },
-  { feature: 'Credit top-ups',            starter: '—',             solo: '✓',            practice: '✓' },
-  { feature: 'Dashboard history',         starter: '12 months',     solo: '12 months',    practice: '12 months' },
-  { feature: 'Team members',              starter: '1',             solo: '1',            practice: 'Up to 3' },
-  { feature: 'Data Processing Agreement', starter: '—',             solo: '✓',            practice: '✓' },
-  { feature: 'MARA compliance report',    starter: '—',             solo: '✓',            practice: '✓' },
-  { feature: 'Support',                   starter: '—',             solo: 'Email',        practice: 'Priority' },
+  { feature: 'Monthly price',              starter: 'Free',        pro: '$199/mo' },
+  { feature: 'Document Intelligence',      starter: '✓',           pro: '✓' },
+  { feature: 'Intake Agent',               starter: '✓',           pro: '✓' },
+  { feature: 'Visa subclasses',            starter: 'All',         pro: 'All' },
+  { feature: 'Dashboard history',          starter: '12 months',   pro: '12 months' },
+  { feature: 'Team members',               starter: '1',           pro: '1' },
+  { feature: 'Data Processing Agreement',  starter: '—',           pro: '✓' },
+  { feature: 'MARA compliance report',     starter: '—',           pro: '✓' },
+  { feature: 'Connect to Claude, n8n, Make, Zapier', starter: '—', pro: '✓' },
+  { feature: 'API access',                 starter: '—',           pro: 'On request' },
+  { feature: 'Support',                    starter: '—',           pro: 'Email' },
 ]
 
 const faqs = [
-  {
-    q: 'What is a credit?',
-    a: 'One credit = one AI operation. Document Intelligence uses 1 credit per document analysed. Intake Agent uses 1 credit per completed client pre-assessment.',
-  },
-  {
-    q: 'Do unused credits roll over?',
-    a: 'Credits reset monthly. Top-up credits never expire.',
-  },
   {
     q: 'Can I change plans?',
     a: 'Yes, upgrade or downgrade any time from your account settings. Changes take effect at the next billing cycle.',
   },
   {
     q: 'Is there a free trial?',
-    a: 'The Starter plan is free forever with 10 credits per month. No credit card required to start.',
+    a: 'The Starter plan is free forever. No credit card required to start.',
   },
 ]
-
-function CheckIcon() {
-  return (
-    <svg className="w-4 h-4 text-emerald flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-    </svg>
-  )
-}
 
 export default function PricingPage() {
   const [openFaq, setOpenFaq] = useState(null)
@@ -144,7 +106,7 @@ export default function PricingPage() {
 
       {/* Pricing cards */}
       <section className="pb-20 px-6 pt-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -195,81 +157,6 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Credit top-ups */}
-      <section className="pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-2xl font-bold text-forest mb-2">Credit Top-Ups</h2>
-            <p className="text-forest/50 text-sm mb-8">Need more credits mid-month? Buy top-ups any time. Credits never expire.</p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Solo */}
-              <div className="bg-surface rounded-xl border border-warm-grey overflow-hidden">
-                <div className="px-5 py-3 border-b border-warm-grey bg-warm-grey/50">
-                  <p className="text-forest text-sm font-semibold">Solo</p>
-                </div>
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-warm-grey">
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Pack</th>
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Credits</th>
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Price</th>
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Per credit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { pack: 'Small', credits: 20, price: 'AUD $25', per: '$1.25' },
-                      { pack: 'Standard', credits: 50, price: 'AUD $55', per: '$1.10' },
-                    ].map((row, i) => (
-                      <tr key={i} className={i % 2 === 1 ? 'bg-warm-grey/30' : ''}>
-                        <td className="px-5 py-3 text-forest text-sm font-medium">{row.pack}</td>
-                        <td className="px-5 py-3 text-forest/60 text-sm">{row.credits}</td>
-                        <td className="px-5 py-3 text-forest/60 text-sm">{row.price}</td>
-                        <td className="px-5 py-3 text-emerald text-sm font-semibold">{row.per}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              {/* Practice only */}
-              <div className="bg-surface rounded-xl border border-warm-grey overflow-hidden">
-                <div className="px-5 py-3 border-b border-warm-grey bg-warm-grey/50">
-                  <p className="text-forest text-sm font-semibold">Practice only</p>
-                </div>
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-warm-grey">
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Pack</th>
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Credits</th>
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Price</th>
-                      <th className="px-5 py-3 text-left text-forest/40 text-xs font-medium">Per credit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { pack: 'Standard', credits: 65, price: 'AUD $45', per: '$0.69' },
-                      { pack: 'Bulk', credits: 120, price: 'AUD $79', per: '$0.66' },
-                    ].map((row, i) => (
-                      <tr key={i} className={i % 2 === 1 ? 'bg-warm-grey/30' : ''}>
-                        <td className="px-5 py-3 text-forest text-sm font-medium">{row.pack}</td>
-                        <td className="px-5 py-3 text-forest/60 text-sm">{row.credits}</td>
-                        <td className="px-5 py-3 text-forest/60 text-sm">{row.price}</td>
-                        <td className="px-5 py-3 text-emerald text-sm font-semibold">{row.per}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Feature comparison table */}
       <section className="pb-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -281,16 +168,15 @@ export default function PricingPage() {
           >
             <h2 className="text-2xl font-bold text-forest mb-8">Full Feature Comparison</h2>
             <div className="rounded-xl border border-warm-grey overflow-hidden overflow-x-auto">
-              <table className="w-full min-w-[600px]">
+              <table className="w-full min-w-[400px]">
                 <thead>
                   <tr className="border-b border-warm-grey">
                     <th className="px-5 py-4 text-left text-forest/40 text-xs font-medium w-48">Feature</th>
                     <th className="px-4 py-4 text-center text-forest/40 text-xs font-medium">Starter</th>
-                    <th className="px-4 py-4 text-center text-xs font-medium bg-forest text-white rounded-none">
-                      <span className="block">Solo</span>
+                    <th className="px-4 py-4 text-center text-xs font-medium bg-forest text-white">
+                      <span className="block">Pro</span>
                       <span className="block text-white/50 text-[10px] font-normal">Most Popular</span>
                     </th>
-                    <th className="px-4 py-4 text-center text-forest/40 text-xs font-medium">Practice</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -298,8 +184,7 @@ export default function PricingPage() {
                     <tr key={i} className={`border-b border-warm-grey/50 last:border-0 ${i % 2 === 1 ? 'bg-warm-grey/20' : ''}`}>
                       <td className="px-5 py-3 text-forest text-sm font-medium">{row.feature}</td>
                       <td className="px-4 py-3 text-center text-forest/55 text-sm">{row.starter}</td>
-                      <td className="px-4 py-3 text-center text-forest/80 text-sm font-medium bg-emerald-tint/40">{row.solo}</td>
-                      <td className="px-4 py-3 text-center text-forest/55 text-sm">{row.practice}</td>
+                      <td className="px-4 py-3 text-center text-forest/80 text-sm font-medium bg-emerald-tint/40">{row.pro}</td>
                     </tr>
                   ))}
                 </tbody>
