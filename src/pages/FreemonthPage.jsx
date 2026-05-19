@@ -169,7 +169,7 @@ export default function FreemonthPage() {
               Sign Up Free – Get One Month Free
             </a>
             <p className="mt-4 font-sans text-sm" style={{ color: '#555555' }}>
-              Use code <strong style={{ color: '#1a2b1a' }}>MIGRO_100_OFF</strong> at checkout. First month on Pro ($199 value) completely free.
+              Create your free account and get your first month on Pro completely free. Worth $199.
             </p>
           </motion.div>
         </div>
@@ -398,7 +398,7 @@ export default function FreemonthPage() {
                   <span className="font-sans text-lg text-white/40 line-through">/month</span>
                 </div>
                 <p className="font-sans text-sm font-semibold mb-6" style={{ color: '#86efac' }}>
-                  First month free with code MIGRO_100_OFF
+                  First month completely free
                 </p>
                 <ul className="flex-1 space-y-3 mb-8">
                   {['Full Document Intelligence', 'PDF and Excel export', 'MARA compliant', 'GCP Sydney', 'Connect to Claude, n8n, Make, and Zapier', 'API access available on request'].map(f => (
@@ -416,7 +416,7 @@ export default function FreemonthPage() {
                   Claim Free Month
                 </a>
                 <p className="text-center font-sans text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                  Apply code MIGRO_100_OFF at checkout.
+                  No credit card required to sign up.
                 </p>
               </div>
             </motion.div>
@@ -438,7 +438,7 @@ export default function FreemonthPage() {
               Your first month is on us.
             </h2>
             <p className="font-sans text-base leading-relaxed mb-9" style={{ color: '#f0fdf4' }}>
-              Sign up free, then apply code MIGRO_100_OFF at checkout to unlock a full month on the Pro plan. Full access, no commitment.
+              Sign up free and unlock a full month on the Pro plan. Full access, no commitment.
             </p>
             <a
               href={SIGNUP_URL}

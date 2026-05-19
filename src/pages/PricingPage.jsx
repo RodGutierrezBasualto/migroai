@@ -95,15 +95,6 @@ export default function PricingPage() {
         </motion.div>
       </section>
 
-      {/* Promo banner */}
-      <section className="pb-2 px-6">
-        <div className="max-w-4xl mx-auto px-5 py-3 bg-emerald-tint border border-emerald/20 rounded-lg text-center">
-          <p className="text-emerald text-sm font-semibold">
-            First 20 agents get their first month free — use code <span className="font-bold">MIGRO_100_OFF</span> at signup.
-          </p>
-        </div>
-      </section>
-
       {/* Pricing cards */}
       <section className="pb-20 px-6 pt-6">
         <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
