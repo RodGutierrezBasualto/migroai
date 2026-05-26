@@ -16,19 +16,6 @@ function HomePage() {
     <>
       <Hero />
 
-      <section className="bg-off-white py-12 px-6">
-        <div style={{ position: 'relative', paddingTop: '56.25%', maxWidth: '800px', margin: '0 auto', borderRadius: '8px', overflow: 'hidden' }}>
-          <iframe
-            src="https://player.mediadelivery.net/embed/650182/fe95e30b-9b25-4806-8187-05cce98fba4d?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
-            loading="lazy"
-            style={{ border: 0, position: 'absolute', top: 0, left: 0, height: '100%', width: '100%' }}
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-            allowFullScreen
-            title="Migro product overview"
-          />
-        </div>
-      </section>
-
       <DashboardSection />
       <FeaturesSection />
       <ClaudeSection />
