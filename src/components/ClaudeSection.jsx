@@ -1,15 +1,78 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const FULL_RESPONSE = "Based on Maria's Migro assessment: Police clearance (NBI) is missing — required for Subclass 186. Name mismatch between passport and AHPRA registration needs resolution. Visa pathway confidence: 88%. Two items need attention before lodgement."
+const USER_MSG = 'Tell me my new good leads and prepare a draft email for them please.'
+
+const INTRO = 'Here are your 3 new good leads from the Intake Agent:'
+
+const leads = [
+  {
+    initials: 'MS',
+    name: 'Miguel Santibañes',
+    email: 'miguelito@gostudy.com.au',
+    visa: 'Subclass 482',
+    fit: 'Strong fit',
+    flags: ['WHV 6-month per-employer limit — compliance risk'],
+  },
+  {
+    initials: 'AP',
+    name: 'Anika Patel',
+    email: 'anika.patel@gmail.com',
+    visa: 'Subclass 190',
+    fit: 'Possible fit',
+    flags: ['No skills assessment yet'],
+  },
+]
+
+const DRAFT_LABEL = '↳ Draft emails ready — 2 prepared'
+
+function LeadCard({ lead, visible }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="rounded-lg p-3 mb-2"
+          style={{ background: '#2a2a2a', border: '1px solid #3a3a3a' }}
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: '#3a3a3a', color: '#a0a0a0' }}>
+              {lead.initials}
+            </div>
+            <div>
+              <p className="text-white text-xs font-semibold leading-tight">{lead.name}</p>
+              <p className="text-xs" style={{ color: '#6b6b6b' }}>{lead.email}</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-1 mb-2">
+            <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: '#3a3a3a', color: '#9ca3af' }}>{lead.visa}</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: '#3a3a3a', color: '#9ca3af' }}>{lead.fit}</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: '#3a3a3a', color: '#9ca3af' }}>Medium urgency</span>
+          </div>
+          {lead.flags.length > 0 && (
+            <div className="rounded px-2 py-1.5" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
+              {lead.flags.map((f, i) => (
+                <p key={i} className="text-[10px] flex items-center gap-1" style={{ color: '#f87171' }}>
+                  <span>⚠</span>{f}
+                </p>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
 
 function ClaudeChat() {
   const [phase, setPhase] = useState('idle')
   const [userText, setUserText] = useState('')
-  const [responseText, setResponseText] = useState('')
-  const [streamIndex, setStreamIndex] = useState(0)
-
-  const USER_MSG = 'Is Maria Santos ready to lodge her 186?'
+  const [introText, setIntroText] = useState('')
+  const [lead1Visible, setLead1Visible] = useState(false)
+  const [lead2Visible, setLead2Visible] = useState(false)
+  const [draftVisible, setDraftVisible] = useState(false)
 
   useEffect(() => {
     let timers = []
@@ -17,131 +80,120 @@ function ClaudeChat() {
     function run() {
       setPhase('idle')
       setUserText('')
-      setResponseText('')
-      setStreamIndex(0)
+      setIntroText('')
+      setLead1Visible(false)
+      setLead2Visible(false)
+      setDraftVisible(false)
 
-      timers.push(setTimeout(() => setPhase('typing'), 800))
-
-      let charDelay = 1200
+      // Type user message
+      timers.push(setTimeout(() => setPhase('typing'), 600))
       USER_MSG.split('').forEach((_, i) => {
-        timers.push(setTimeout(() => {
-          setUserText(USER_MSG.slice(0, i + 1))
-        }, charDelay + i * 38))
+        timers.push(setTimeout(() => setUserText(USER_MSG.slice(0, i + 1)), 700 + i * 32))
       })
 
-      const doneTyping = charDelay + USER_MSG.length * 38 + 300
-      timers.push(setTimeout(() => setPhase('loading'), doneTyping))
+      const afterUser = 700 + USER_MSG.length * 32 + 400
+
+      // Tool use line
+      timers.push(setTimeout(() => setPhase('tool'), afterUser))
+
+      // Intro text streams
+      timers.push(setTimeout(() => setPhase('streaming'), afterUser + 700))
+      INTRO.split('').forEach((_, i) => {
+        timers.push(setTimeout(() => setIntroText(INTRO.slice(0, i + 1)), afterUser + 800 + i * 28))
+      })
+
+      const afterIntro = afterUser + 800 + INTRO.length * 28 + 300
+
+      // Lead cards appear
+      timers.push(setTimeout(() => setLead1Visible(true), afterIntro))
+      timers.push(setTimeout(() => setLead2Visible(true), afterIntro + 500))
+      timers.push(setTimeout(() => setDraftVisible(true), afterIntro + 1100))
+
+      // Loop
       timers.push(setTimeout(() => {
-        setPhase('streaming')
-        setStreamIndex(0)
-      }, doneTyping + 1400))
+        run()
+      }, afterIntro + 1100 + 5000))
     }
 
     run()
     return () => timers.forEach(clearTimeout)
   }, [])
 
-  useEffect(() => {
-    if (phase !== 'streaming') return
-    if (streamIndex >= FULL_RESPONSE.length) {
-      const t = setTimeout(() => {
-        setPhase('idle')
-        setUserText('')
-        setResponseText('')
-        setStreamIndex(0)
-        setTimeout(() => {
-          setPhase('typing')
-        }, 1200)
-      }, 4000)
-      return () => clearTimeout(t)
-    }
-    const t = setTimeout(() => {
-      setResponseText(FULL_RESPONSE.slice(0, streamIndex + 1))
-      setStreamIndex(i => i + 1)
-    }, 22)
-    return () => clearTimeout(t)
-  }, [phase, streamIndex])
-
   return (
-    <div className="rounded-xl overflow-hidden border border-warm-grey shadow-warm-md flex flex-col h-full">
-      {/* Claude header */}
-      <div
-        className="px-4 py-3 flex items-center gap-2.5"
-        style={{ background: 'linear-gradient(135deg, #d97706 0%, #7c3aed 100%)' }}
-      >
-        <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+    <div className="rounded-xl overflow-hidden flex flex-col" style={{ background: '#1a1a1a', border: '1px solid #2a2a2a', minHeight: 360 }}>
+      {/* Title bar */}
+      <div className="px-4 py-2.5 flex items-center gap-2 border-b" style={{ borderColor: '#2a2a2a' }}>
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#ff5f57' }} />
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#febc2e' }} />
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#28c840' }} />
         </div>
-        <span className="text-white text-sm font-semibold">Claude</span>
-        <span className="ml-auto text-white/50 text-xs">via Migro MCP</span>
+        <span className="text-xs mx-auto" style={{ color: '#6b6b6b' }}>Good leads from Migro</span>
       </div>
 
-      {/* Chat area */}
-      <div className="flex-1 bg-white p-4 space-y-3 overflow-hidden min-h-[220px] flex flex-col justify-end">
+      {/* Chat */}
+      <div className="flex-1 px-4 py-4 space-y-3 overflow-hidden flex flex-col justify-end">
 
+        {/* User message */}
         <AnimatePresence>
           {userText && (
             <motion.div
-              key="user-msg"
-              initial={{ opacity: 0, y: 8 }}
+              key="user"
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               className="flex justify-end"
             >
-              <div className="bg-forest text-white text-xs px-3 py-2 rounded-xl rounded-br-sm max-w-[80%] leading-relaxed">
+              <div className="text-xs px-3 py-2 rounded-xl rounded-br-sm max-w-[85%] leading-relaxed" style={{ background: '#2a2a2a', color: '#e5e5e5' }}>
                 {userText}
-                {phase === 'typing' && (
-                  <span className="inline-block w-0.5 h-3 bg-white/60 ml-0.5 animate-pulse" />
-                )}
+                {phase === 'typing' && <span className="inline-block w-0.5 h-3 bg-white/40 ml-0.5 animate-pulse" />}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
+        {/* Tool use */}
         <AnimatePresence>
-          {phase === 'loading' && (
+          {(phase === 'tool' || phase === 'streaming' || lead1Visible) && (
             <motion.div
-              key="loading"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="flex items-center gap-1.5 px-3 py-2"
+              key="tool"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-center gap-1.5"
             >
-              {[0, 1, 2].map(i => (
-                <motion.span
-                  key={i}
-                  className="w-1.5 h-1.5 rounded-full bg-purple-400"
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.2 }}
-                />
-              ))}
+              <span className="text-[10px]" style={{ color: '#6b6b6b' }}>Loaded tools, used Migro integration</span>
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M9 5l3 3-3 3" stroke="#6b6b6b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </motion.div>
           )}
         </AnimatePresence>
 
+        {/* Intro text */}
+        {introText && (
+          <p className="text-sm" style={{ color: '#e5e5e5' }}>
+            {introText}
+            {phase === 'streaming' && introText.length < INTRO.length && (
+              <span className="inline-block w-0.5 h-3.5 bg-white/40 ml-0.5 animate-pulse" />
+            )}
+          </p>
+        )}
+
+        {/* Lead cards */}
+        <div>
+          <LeadCard lead={leads[0]} visible={lead1Visible} />
+          <LeadCard lead={leads[1]} visible={lead2Visible} />
+        </div>
+
+        {/* Draft label */}
         <AnimatePresence>
-          {responseText && (
-            <motion.div
-              key="response"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex justify-start"
+          {draftVisible && (
+            <motion.p
+              key="draft"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-[11px]"
+              style={{ color: '#6b6b6b' }}
             >
-              <div className="text-xs px-3 py-2.5 rounded-xl rounded-bl-sm max-w-[85%] leading-relaxed border border-purple-100" style={{ background: '#f5f3ff', color: '#4c1d95' }}>
-                {responseText}
-                {phase === 'streaming' && streamIndex < FULL_RESPONSE.length && (
-                  <span className="inline-block w-0.5 h-3 bg-purple-400 ml-0.5 animate-pulse" />
-                )}
-                {(phase === 'streaming' && streamIndex >= FULL_RESPONSE.length) || phase === 'idle' ? null : null}
-                {phase !== 'streaming' && responseText === FULL_RESPONSE && (
-                  <p className="text-purple-400/70 text-[10px] font-mono mt-2">↳ via Migro</p>
-                )}
-                {phase === 'streaming' && streamIndex >= FULL_RESPONSE.length && (
-                  <p className="text-purple-400/70 text-[10px] font-mono mt-2">↳ via Migro</p>
-                )}
-              </div>
-            </motion.div>
+              {DRAFT_LABEL}
+            </motion.p>
           )}
         </AnimatePresence>
       </div>
@@ -160,38 +212,28 @@ function MigroDataCard() {
           </svg>
         </div>
         <span className="text-forest text-sm font-semibold">Migro</span>
-        <span className="ml-auto text-forest/35 text-xs">Maria Santos</span>
+        <span className="ml-auto text-forest/35 text-xs">Intake leads</span>
       </div>
-      <div className="p-4 space-y-3">
-        <div>
-          <p className="text-forest/40 text-[10px] uppercase tracking-wider mb-1.5">Visa Pathway</p>
-          <div className="space-y-1.5">
-            {[
-              { label: '186 — Employer Nomination', pct: 88 },
-              { label: '189 — Skilled Independent', pct: 76 },
-            ].map(item => (
-              <div key={item.label} className="flex items-center gap-2">
-                <span className="text-forest/50 text-xs w-36 flex-shrink-0">{item.label}</span>
-                <div className="flex-1 h-1.5 bg-warm-grey rounded-full overflow-hidden">
-                  <div className="h-full bg-emerald rounded-full" style={{ width: `${item.pct}%` }} />
-                </div>
-                <span className="text-emerald text-xs font-semibold w-8 text-right">{item.pct}%</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="text-forest/40 text-[10px] uppercase tracking-wider mb-1.5">Document flags</p>
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg border border-red-200 bg-red-50">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
-              <span className="text-red-700 text-xs">Police clearance missing</span>
+      <div className="p-4 space-y-2">
+        {[
+          { initials: 'MS', name: 'Miguel Santibañes', visa: 'SC 482', tag: 'Good lead', tagColor: 'text-emerald', tagBg: 'bg-emerald-tint' },
+          { initials: 'AP', name: 'Anika Patel', visa: 'SC 190', tag: 'Good lead', tagColor: 'text-emerald', tagBg: 'bg-emerald-tint' },
+          { initials: 'JS', name: 'John Smith', visa: 'SC 482', tag: 'Bad lead', tagColor: 'text-red-600', tagBg: 'bg-red-50' },
+        ].map((row, i) => (
+          <div key={i} className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg bg-warm-grey/50">
+            <div className="w-6 h-6 rounded-full bg-emerald-tint text-emerald flex items-center justify-center text-[10px] font-bold flex-shrink-0">
+              {row.initials}
             </div>
-            <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg border border-amber-200 bg-amber-50">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
-              <span className="text-amber-700 text-xs">Name mismatch detected</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-forest text-xs font-medium truncate">{row.name}</p>
+              <p className="text-forest/40 text-[10px]">{row.visa}</p>
             </div>
+            <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${row.tagBg} ${row.tagColor}`}>{row.tag}</span>
           </div>
+        ))}
+        <div className="flex items-center gap-1.5 pt-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse-slow flex-shrink-0" />
+          <span className="text-forest/40 text-[10px]">3 new leads this week</span>
         </div>
       </div>
     </div>
@@ -227,7 +269,6 @@ export default function ClaudeSection() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="grid grid-cols-2 gap-4"
-            style={{ minHeight: '320px' }}
           >
             <MigroDataCard />
             <ClaudeChat />

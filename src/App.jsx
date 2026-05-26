@@ -7,10 +7,8 @@ import FeaturesSection from './components/FeaturesSection'
 import ClaudeSection from './components/ClaudeSection'
 import APISection from './components/APISection'
 import CredibilityStrip from './components/CredibilityStrip'
-import WaitlistSection from './components/WaitlistSection'
 import PricingPage from './pages/PricingPage'
 import AboutPage from './pages/AboutPage'
-import DemoPage from './pages/DemoPage'
 import FreemonthPage from './pages/FreemonthPage'
 
 function HomePage() {
@@ -35,7 +33,6 @@ function HomePage() {
       <FeaturesSection />
       <ClaudeSection />
       <APISection />
-      <WaitlistSection />
       <CredibilityStrip />
     </>
   )
@@ -52,7 +49,6 @@ function AppShell() {
         <Route path="/" element={<HomePage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/demo" element={<DemoPage />} />
         <Route path="/freemonth" element={<FreemonthPage />} />
       </Routes>
       {!isFreemonth && <Footer />}

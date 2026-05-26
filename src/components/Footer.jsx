@@ -35,7 +35,6 @@ export default function Footer() {
                 <p className="text-white/25 text-xs uppercase tracking-widest mb-3">Product</p>
                 <div className="space-y-2">
                   <Link to="/pricing" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Pricing</Link>
-                  <a href="/#how-it-works" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">How it works</a>
                   <a href="https://app.migro.com.au/signup" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Start free today</a>
                 </div>
               </div>

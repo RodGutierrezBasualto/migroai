@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const TOOLS = [
-  { label: 'HubSpot',    angle: 0   },
-  { label: 'n8n',        angle: 60  },
-  { label: 'Make',       angle: 120 },
-  { label: 'Zapier',     angle: 180 },
-  { label: 'Case Mgmt',  angle: 240 },
-  { label: 'Your CRM',   angle: 300 },
+  { label: 'CRM',          angle: 0   },
+  { label: 'Case Mgmt',    angle: 60  },
+  { label: 'Email',        angle: 120 },
+  { label: 'Automation',   angle: 180 },
+  { label: 'Reporting',    angle: 240 },
+  { label: 'Client Portal', angle: 300 },
 ]
 
 const RADIUS = 130
@@ -74,7 +74,6 @@ function RadialAnimation() {
         className="absolute inset-0"
         style={{ overflow: 'visible' }}
       >
-        {/* Spoke lines */}
         {TOOLS.map((tool, i) => {
           const end = toXY(tool.angle, RADIUS - 30)
           return (
@@ -90,8 +89,6 @@ function RadialAnimation() {
             />
           )
         })}
-
-        {/* Animated packets */}
         {TOOLS.map((tool, i) => (
           <Packet key={i} angle={tool.angle} active={activeIndex === i} />
         ))}
@@ -122,11 +119,11 @@ function RadialAnimation() {
         return (
           <motion.div
             key={i}
-            className="absolute flex items-center justify-center rounded-lg border text-xs font-semibold px-2 py-1.5 select-none"
+            className="absolute flex items-center justify-center rounded-lg border text-[11px] font-semibold px-2 py-1.5 select-none"
             style={{
-              left: pos.x - 36,
+              left: pos.x - 38,
               top: pos.y - 16,
-              width: 72,
+              width: 76,
               textAlign: 'center',
               transition: 'all 0.2s ease',
               background: isActive ? '#E8F2E8' : '#fff',
@@ -171,7 +168,7 @@ export default function APISection() {
               Connect Migro to your<br />practice stack.
             </h2>
             <p className="text-forest/55 text-base leading-relaxed">
-              The API lets you connect Migro to your other practice tools — CRM, case management, or automation workflows — so client data flows automatically without manual entry. Build once and your intake assessments and document analysis results appear wherever you need them. Also connects to n8n, Make, and Zapier.
+              The API lets you connect Migro to your other practice tools — CRM, case management, or automation workflows — so client data flows automatically without manual entry. Build once and your intake assessments and document analysis results appear wherever you need them.
             </p>
           </motion.div>
 
