@@ -66,7 +66,7 @@ function DashboardWidget() {
   }, [cycle])
 
   return (
-    <div className="w-full rounded-xl overflow-hidden border border-warm-grey shadow-warm-md flex" style={{ minHeight: 320 }}>
+    <div className="w-full rounded-xl overflow-hidden border border-warm-grey shadow-warm-md flex" style={{ height: 380 }}>
       {/* Sidebar */}
       <div className="w-10 sm:w-44 bg-white border-r border-warm-grey flex flex-col flex-shrink-0">
         <div className="px-3 py-3.5 border-b border-warm-grey">

@@ -120,7 +120,7 @@ function ClaudeChat() {
   }, [])
 
   return (
-    <div className="rounded-xl overflow-hidden flex flex-col" style={{ background: '#1a1a1a', border: '1px solid #2a2a2a', minHeight: 360 }}>
+    <div className="rounded-xl overflow-hidden flex flex-col h-full" style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}>
       {/* Title bar */}
       <div className="px-4 py-2.5 flex items-center gap-2 border-b" style={{ borderColor: '#2a2a2a' }}>
         <div className="flex gap-1.5">
@@ -132,7 +132,7 @@ function ClaudeChat() {
       </div>
 
       {/* Chat */}
-      <div className="flex-1 px-4 py-4 space-y-3 overflow-hidden flex flex-col justify-end">
+      <div className="flex-1 px-4 py-4 space-y-3 overflow-y-auto flex flex-col justify-end" style={{ scrollbarWidth: 'none' }}>
 
         {/* User message */}
         <AnimatePresence>
@@ -203,7 +203,7 @@ function ClaudeChat() {
 
 function MigroDataCard() {
   return (
-    <div className="rounded-xl border border-warm-grey bg-surface shadow-warm overflow-hidden h-full">
+    <div className="rounded-xl border border-warm-grey bg-surface shadow-warm overflow-hidden h-full flex flex-col">
       <div className="px-4 py-3 border-b border-warm-grey flex items-center gap-2.5">
         <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#1a2b1a' }}>
           <svg width="11" height="11" viewBox="0 0 18 18" fill="none">
@@ -269,6 +269,7 @@ export default function ClaudeSection() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="grid grid-cols-2 gap-4"
+          style={{ height: 380 }}
           >
             <MigroDataCard />
             <ClaudeChat />
