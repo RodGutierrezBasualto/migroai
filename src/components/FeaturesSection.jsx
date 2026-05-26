@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 const features = [
   {
     tag: 'Intake Agent',
-    title: 'Qualify clients before they book a call.',
-    desc: 'Share a unique intake link or embed the chat on your website. Migro qualifies the enquiry, captures consent, and builds a structured client profile — before you spend a minute of your time.',
+    title: 'AI chat widget that interviews your clients before you do.',
+    desc: 'Migro interviews prospective clients before they ever speak to you — collecting visa goals, personal details, and their migration situation automatically. You get a structured AI assessment with the key info in your dashboard before the first consultation.',
     visual: (
       <div className="relative rounded-xl border border-warm-grey bg-surface p-4 overflow-hidden shadow-warm">
         <div className="flex items-center gap-2 mb-3">
@@ -39,9 +39,9 @@ const features = [
     ),
   },
   {
-    tag: 'Document Intelligence',
-    title: 'Turn a document folder into an audit-ready evidence pack.',
-    desc: 'Upload up to 25 files — PDFs, Word docs, spreadsheets, images. Migro reads every document, flags expired certificates, catches inconsistencies, and cites the exact Migration Regulations clause. Branded PDF report ready in under two minutes.',
+    tag: 'Document Analysis',
+    title: '25 documents read simultaneously. Every issue cited.',
+    desc: 'Our AI reads up to 25 documents simultaneously, cross-references them against the requirements of the nominated visa subclass, and flags what needs attention — expired certificates, missing evidence, inconsistencies — with the exact clause from the Migration Act or Regulations that applies.',
     visual: (
       <div className="rounded-xl border border-warm-grey bg-surface p-4 shadow-warm">
         <div className="flex items-center justify-between mb-4">
@@ -78,55 +78,12 @@ const features = [
       </div>
     ),
   },
-  {
-    tag: 'Migration Counsel',
-    title: 'Your AI migration law research assistant.',
-    desc: 'Ask any question about the Migration Act 1958, Migration Regulations 1994, or PAM3. Grounded, cited answers — not general knowledge.',
-    cta: 'Join waitlist',
-    ctaHref: '#waitlist',
-    comingSoon: true,
-    visual: (
-      <div className="rounded-xl border border-warm-grey bg-surface p-4 shadow-warm opacity-75">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-forest/50 text-xs font-medium">Migration Counsel</span>
-          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-warm-grey text-forest/40">Coming mid-2026</span>
-        </div>
-        <div className="space-y-3">
-          <div className="bg-warm-grey rounded-xl rounded-tl-sm px-3 py-2.5">
-            <p className="text-forest/70 text-xs leading-relaxed">What are the evidentiary requirements for a de facto relationship under reg 1.15A?</p>
-          </div>
-          <div className="bg-emerald-tint border border-emerald/15 rounded-xl rounded-tr-sm px-3 py-2.5">
-            <p className="text-forest/70 text-xs leading-relaxed mb-2">Under r 1.15A(1)(b), a de facto relationship requires a genuine, committed and continuing relationship. Evidence of cohabitation, financial interdependence, and social recognition is relevant to the assessment.</p>
-            <p className="text-forest/40 text-[10px] font-mono">↳ Migration Regulations 1994, r 1.15A(1)(b)</p>
-          </div>
-        </div>
-        <div className="mt-3 flex items-center gap-1.5 text-forest/30 text-[10px]">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          Grounded in PAM3 and current legislation
-        </div>
-      </div>
-    ),
-  },
 ]
 
 export default function FeaturesSection() {
   return (
     <section className="relative py-24 bg-off-white border-t border-warm-grey" id="features">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <p className="text-forest/40 text-sm font-medium uppercase tracking-widest mb-3">The Migro Way</p>
-          <h2 className="text-4xl font-bold text-forest mb-4 font-display">Everything you need,<br />nothing you don't.</h2>
-          <p className="text-forest/55 text-lg max-w-xl mx-auto">
-            Three capabilities working together to transform the first 15 minutes of every client relationship.
-          </p>
-        </motion.div>
-
         <div className="space-y-20">
           {features.map((f, i) => (
             <motion.div
@@ -135,20 +92,12 @@ export default function FeaturesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6 }}
-              className={`grid lg:grid-cols-2 gap-12 items-center ${f.comingSoon ? 'opacity-60' : ''}`}
+              className="grid lg:grid-cols-2 gap-12 items-center"
             >
               <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className="flex items-center gap-3 mb-3">
-                  <p className="text-forest/40 text-sm font-medium">{f.tag}</p>
-                  {f.comingSoon && (
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-warm-grey text-forest/40">Coming mid-2026</span>
-                  )}
-                </div>
+                <p className="text-forest/40 text-sm font-medium mb-3">{f.tag}</p>
                 <h3 className="text-3xl font-bold text-forest mb-4 leading-tight font-display">{f.title}</h3>
-                <p className="text-forest/55 text-base leading-relaxed mb-6">{f.desc}</p>
-                {f.cta && (
-                  <a href={f.ctaHref} className="text-emerald text-sm font-semibold hover:underline">{f.cta} →</a>
-                )}
+                <p className="text-forest/55 text-base leading-relaxed">{f.desc}</p>
               </div>
               <div className={i % 2 === 1 ? 'lg:order-1' : ''}>
                 {f.visual}

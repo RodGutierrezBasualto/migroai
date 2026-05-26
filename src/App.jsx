@@ -4,7 +4,8 @@ import Footer from './components/Footer'
 import Hero from './components/Hero'
 import DashboardSection from './components/DashboardSection'
 import FeaturesSection from './components/FeaturesSection'
-import HowItWorks from './components/HowItWorks'
+import ClaudeSection from './components/ClaudeSection'
+import APISection from './components/APISection'
 import CredibilityStrip from './components/CredibilityStrip'
 import WaitlistSection from './components/WaitlistSection'
 import PricingPage from './pages/PricingPage'
@@ -31,9 +32,10 @@ function HomePage() {
       </section>
 
       <DashboardSection />
-      <WaitlistSection />
       <FeaturesSection />
-      <HowItWorks />
+      <ClaudeSection />
+      <APISection />
+      <WaitlistSection />
       <CredibilityStrip />
     </>
   )
