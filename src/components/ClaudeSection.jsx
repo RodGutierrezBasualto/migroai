@@ -28,21 +28,21 @@ function LeadCard({ lead, visible }) {
           style={{ background: '#2a2a2a', border: '1px solid #3a3a3a' }}
         >
           <div className="flex items-center gap-2 mb-1.5">
-            <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0" style={{ background: '#3a3a3a', color: '#a0a0a0' }}>
+            <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: '#3a3a3a', color: '#a0a0a0' }}>
               {lead.initials}
             </div>
             <div>
-              <p className="text-white text-[11px] font-semibold leading-tight">{lead.name}</p>
-              <p className="text-[10px]" style={{ color: '#6b6b6b' }}>{lead.email}</p>
+              <p className="text-white text-sm font-semibold leading-tight">{lead.name}</p>
+              <p className="text-xs" style={{ color: '#6b6b6b' }}>{lead.email}</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-1 mb-1.5">
-            <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: '#3a3a3a', color: '#9ca3af' }}>{lead.visa}</span>
-            <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: '#3a3a3a', color: '#9ca3af' }}>{lead.fit}</span>
+            <span className="text-[11px] px-1.5 py-0.5 rounded" style={{ background: '#3a3a3a', color: '#9ca3af' }}>{lead.visa}</span>
+            <span className="text-[11px] px-1.5 py-0.5 rounded" style={{ background: '#3a3a3a', color: '#9ca3af' }}>{lead.fit}</span>
           </div>
           {lead.flags.length > 0 && (
             <div className="rounded px-2 py-1" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
-              <p className="text-[9px] flex items-center gap-1" style={{ color: '#f87171' }}>⚠ {lead.flags[0]}</p>
+              <p className="text-[11px] flex items-center gap-1" style={{ color: '#f87171' }}>⚠ {lead.flags[0]}</p>
             </div>
           )}
         </motion.div>
@@ -142,8 +142,8 @@ function ClaudeChat() {
     return () => { alive = false; timers.forEach(clearTimeout) }
   }, [])
 
-  const Cursor = () => <span className="inline-block w-0.5 h-3 bg-white/40 ml-0.5 animate-pulse align-middle" />
-  const StreamCursor = () => <span className="inline-block w-0.5 h-3 bg-purple-400/70 ml-0.5 animate-pulse align-middle" />
+  const Cursor = () => <span className="inline-block w-0.5 h-3.5 bg-white/40 ml-0.5 animate-pulse align-middle" />
+  const StreamCursor = () => <span className="inline-block w-0.5 h-3.5 bg-purple-400/70 ml-0.5 animate-pulse align-middle" />
 
   return (
     <div className="rounded-xl overflow-hidden flex flex-col h-full" style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}>
@@ -156,7 +156,7 @@ function ClaudeChat() {
         </div>
         <div className="flex items-center gap-1.5 mx-auto">
           <img src="/claude.png" alt="Claude" className="w-4 h-4 object-contain opacity-80" />
-          <span className="text-[11px]" style={{ color: '#6b6b6b' }}>Claude — Migro</span>
+          <span className="text-xs" style={{ color: '#6b6b6b' }}>Claude — Migro</span>
         </div>
       </div>
 
@@ -169,19 +169,19 @@ function ClaudeChat() {
         {/* ── Exchange 1 ── */}
         {user1 && (
           <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="text-[11px] px-2.5 py-1.5 rounded-xl rounded-br-sm max-w-[85%] leading-relaxed" style={{ background: '#2a2a2a', color: '#e5e5e5' }}>
+            <div className="text-sm px-3 py-2 rounded-xl rounded-br-sm max-w-[85%] leading-relaxed" style={{ background: '#2a2a2a', color: '#e5e5e5' }}>
               {user1}{user1.length < MSG1.length && <Cursor />}
             </div>
           </motion.div>
         )}
         {showTool1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-1">
-            <span className="text-[10px]" style={{ color: '#6b6b6b' }}>↳ Loaded tools, used Migro integration</span>
+            <span className="text-xs" style={{ color: '#6b6b6b' }}>↳ Loaded tools, used Migro integration</span>
             <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M9 5l3 3-3 3" stroke="#6b6b6b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </motion.div>
         )}
         {intro1 && (
-          <p className="text-[11px] leading-relaxed" style={{ color: '#e5e5e5' }}>
+          <p className="text-sm leading-relaxed" style={{ color: '#e5e5e5' }}>
             {intro1}{intro1.length < INTRO1.length && <StreamCursor />}
           </p>
         )}
@@ -192,7 +192,7 @@ function ClaudeChat() {
           </div>
         )}
         {draftLabel && (
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px]" style={{ color: '#6b6b6b' }}>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs" style={{ color: '#6b6b6b' }}>
             {draftLabel && '↳ Draft emails ready — 2 prepared'}
           </motion.p>
         )}
@@ -200,26 +200,26 @@ function ClaudeChat() {
         {/* ── Exchange 2 ── */}
         {user2 && (
           <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="text-[11px] px-2.5 py-1.5 rounded-xl rounded-br-sm max-w-[85%] leading-relaxed" style={{ background: '#2a2a2a', color: '#e5e5e5' }}>
+            <div className="text-sm px-3 py-2 rounded-xl rounded-br-sm max-w-[85%] leading-relaxed" style={{ background: '#2a2a2a', color: '#e5e5e5' }}>
               {user2}{user2.length < MSG2.length && <Cursor />}
             </div>
           </motion.div>
         )}
         {showTool2 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-1">
-            <span className="text-[10px]" style={{ color: '#6b6b6b' }}>↳ Used Migro integration</span>
+            <span className="text-xs" style={{ color: '#6b6b6b' }}>↳ Used Migro integration</span>
             <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M9 5l3 3-3 3" stroke="#6b6b6b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </motion.div>
         )}
         {emailText && (
           <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
-            <div className="text-[11px] px-2.5 py-2 rounded-xl rounded-bl-sm max-w-[90%] leading-relaxed border border-purple-900/30" style={{ background: '#1e1530', color: '#d4b8ff' }}>
+            <div className="text-sm px-3 py-2 rounded-xl rounded-bl-sm max-w-[90%] leading-relaxed border border-purple-900/30" style={{ background: '#1e1530', color: '#d4b8ff' }}>
               {emailText}{emailText.length < EMAIL_TEXT.length && <StreamCursor />}
             </div>
           </motion.div>
         )}
         {emailLabel && (
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px]" style={{ color: '#6b6b6b' }}>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs" style={{ color: '#6b6b6b' }}>
             {EMAIL_LABEL}
           </motion.p>
         )}
@@ -227,20 +227,20 @@ function ClaudeChat() {
         {/* ── Exchange 3 ── */}
         {user3 && (
           <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="text-[11px] px-2.5 py-1.5 rounded-xl rounded-br-sm max-w-[85%] leading-relaxed" style={{ background: '#2a2a2a', color: '#e5e5e5' }}>
+            <div className="text-sm px-3 py-2 rounded-xl rounded-br-sm max-w-[85%] leading-relaxed" style={{ background: '#2a2a2a', color: '#e5e5e5' }}>
               {user3}{user3.length < MSG3.length && <Cursor />}
             </div>
           </motion.div>
         )}
         {showTool3 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-1">
-            <span className="text-[10px]" style={{ color: '#6b6b6b' }}>↳ Analysing documents via Migro</span>
+            <span className="text-xs" style={{ color: '#6b6b6b' }}>↳ Analysing documents via Migro</span>
             <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M9 5l3 3-3 3" stroke="#6b6b6b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </motion.div>
         )}
         {analysisText && (
           <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
-            <div className="text-[11px] px-2.5 py-2 rounded-xl rounded-bl-sm max-w-[90%] leading-relaxed border border-purple-900/30" style={{ background: '#1e1530', color: '#d4b8ff' }}>
+            <div className="text-sm px-3 py-2 rounded-xl rounded-bl-sm max-w-[90%] leading-relaxed border border-purple-900/30" style={{ background: '#1e1530', color: '#d4b8ff' }}>
               {analysisText}{analysisText.length < ANALYSIS_TEXT.length && <StreamCursor />}
             </div>
           </motion.div>
@@ -280,7 +280,7 @@ export default function ClaudeSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ height: 440 }}
+            style={{ height: 520 }}
           >
             <ClaudeChat />
           </motion.div>
