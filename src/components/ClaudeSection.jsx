@@ -154,7 +154,10 @@ function ClaudeChat() {
           <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#febc2e' }} />
           <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#28c840' }} />
         </div>
-        <span className="text-[11px] mx-auto" style={{ color: '#6b6b6b' }}>Claude — Migro</span>
+        <div className="flex items-center gap-1.5 mx-auto">
+          <img src="/claude.png" alt="Claude" className="w-4 h-4 object-contain opacity-80" />
+          <span className="text-[11px]" style={{ color: '#6b6b6b' }}>Claude — Migro</span>
+        </div>
       </div>
 
       {/* Scrollable chat */}
@@ -250,44 +253,6 @@ function ClaudeChat() {
   )
 }
 
-function MigroDataCard() {
-  return (
-    <div className="rounded-xl border border-warm-grey bg-surface shadow-warm overflow-hidden h-full flex flex-col">
-      <div className="px-4 py-3 border-b border-warm-grey flex items-center gap-2.5 flex-shrink-0">
-        <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#1a2b1a' }}>
-          <svg width="11" height="11" viewBox="0 0 18 18" fill="none">
-            <path d="M3 9L7.5 4.5L12 9L7.5 13.5L3 9Z" fill="white" fillOpacity="0.9"/>
-            <path d="M9 4.5L13.5 9L9 13.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-          </svg>
-        </div>
-        <span className="text-forest text-sm font-semibold">Migro</span>
-        <span className="ml-auto text-forest/35 text-xs">Intake leads</span>
-      </div>
-      <div className="p-4 space-y-2 flex-1">
-        {[
-          { initials: 'MS', name: 'Miguel Santibañes', visa: 'SC 482', tag: 'Good lead', tagColor: 'text-emerald', tagBg: 'bg-emerald-tint' },
-          { initials: 'AP', name: 'Anika Patel',       visa: 'SC 190', tag: 'Good lead', tagColor: 'text-emerald', tagBg: 'bg-emerald-tint' },
-          { initials: 'JS', name: 'John Smith',         visa: 'SC 482', tag: 'Bad lead',  tagColor: 'text-red-600', tagBg: 'bg-red-50'       },
-        ].map((row, i) => (
-          <div key={i} className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg bg-warm-grey/50">
-            <div className="w-6 h-6 rounded-full bg-emerald-tint text-emerald flex items-center justify-center text-[10px] font-bold flex-shrink-0">
-              {row.initials}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-forest text-xs font-medium truncate">{row.name}</p>
-              <p className="text-forest/40 text-[10px]">{row.visa}</p>
-            </div>
-            <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${row.tagBg} ${row.tagColor}`}>{row.tag}</span>
-          </div>
-        ))}
-        <div className="flex items-center gap-1.5 pt-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse-slow flex-shrink-0" />
-          <span className="text-forest/40 text-[10px]">3 new leads this week</span>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export default function ClaudeSection() {
   return (
@@ -315,10 +280,8 @@ export default function ClaudeSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="grid grid-cols-2 gap-4"
             style={{ height: 440 }}
           >
-            <MigroDataCard />
             <ClaudeChat />
           </motion.div>
 
