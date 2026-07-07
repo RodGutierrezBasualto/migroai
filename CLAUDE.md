@@ -39,7 +39,7 @@ Marketing website for **Migro** — AI-powered intake and document intelligence 
 | `/` | `HomePage` (inline in App.jsx) — full landing page |
 | `/pricing` | `src/pages/PricingPage.jsx` |
 | `/about` | `src/pages/AboutPage.jsx` |
-| `/demo` | `src/pages/DemoPage.jsx` |
+| `/freemonth` | `src/pages/FreemonthPage.jsx` — standalone (no Navbar/Footer) |
 
 ---
 
@@ -101,10 +101,10 @@ GA4 Measurement ID: `G-3GPD2RPR3D`. Implemented as two `<script>` tags in `index
 
 ## Hidden components (intentionally not rendered)
 
-- `src/components/PricingSection.jsx` — exists, not in `App.jsx`
-- `src/components/ProblemSection.jsx` — exists, not in `App.jsx`
+- `src/components/ProblemSection.jsx` — exists, not in `App.jsx`; re-add to imports and `<HomePage>` JSX when needed
+- `src/components/HowItWorks.jsx` and `src/components/WaitlistSection.jsx` — exist, currently not rendered
 
-Re-add to `App.jsx` imports and `<HomePage>` JSX when needed.
+`PricingSection.jsx` and `pages/DemoPage.jsx` were deleted in July 2026 (PricingSection carried stale pricing; recover from git history only after updating it). Public pricing anchors at $199/mo Pro; do not introduce any other price point anywhere on the site without explicit approval.
 
 ---
 

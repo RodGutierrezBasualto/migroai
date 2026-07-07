@@ -19,7 +19,7 @@ export default function WaitlistSection() {
             Sign up today.
           </h2>
           <p className="text-white/55 text-lg mb-10 max-w-lg mx-auto">
-            Your first client intake in under two minutes. No complex setup, no lock-in — just a smarter way to run your practice.
+            Your first client intake in under two minutes. No complex setup, no lock-in, just a smarter way to run your practice.
           </p>
 
           <a
@@ -29,7 +29,7 @@ export default function WaitlistSection() {
             Get started free →
           </a>
 
-          <p className="text-white/25 text-xs mt-6">Data never leaves Australia. Built for MARA compliance from day one.</p>
+          <p className="text-white/25 text-xs mt-6">Client documents stay in the Google Cloud Sydney region. Designed for the MARA Code of Conduct.</p>
         </motion.div>
       </div>
     </section>

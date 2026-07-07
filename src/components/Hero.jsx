@@ -190,8 +190,8 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-forest font-display"
             >
-              The only AI built specifically<br />
-              <span className="text-emerald">for Australian migration agents.</span>
+              Know if the file will survive scrutiny.<br />
+              <span className="text-emerald">Before you lodge.</span>
             </motion.h1>
 
             <motion.p
@@ -200,7 +200,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-forest/60 text-lg leading-relaxed mb-8 max-w-md"
             >
-              Analyse client documents, flag what's expired, catch what's missing, and cite the exact Migration Regulations clause — all in under two minutes. Built for MARA compliance from day one.
+              Upload a client's document bundle. In under two minutes, Migro checks every file against the subclass requirements and returns a red, amber or green verdict. Every finding cites the exact clause of the Migration Act 1958 or Migration Regulations 1994, so you can verify it the way you would check a junior's work.
             </motion.p>
 
             <motion.div
@@ -216,10 +216,10 @@ export default function Hero() {
                 Start free today
               </a>
               <a
-                href="#how-it-works"
+                href="#demo"
                 className="px-6 py-3 rounded-[6px] border border-warm-grey hover:border-forest/20 text-forest/60 hover:text-forest font-medium text-sm transition-colors duration-200 bg-surface"
               >
-                See how it works ↓
+                Watch the demo ↓
               </a>
             </motion.div>
 
@@ -241,7 +241,7 @@ export default function Hero() {
             <div className="pt-3 border-t border-warm-grey">
               <p className="text-forest text-sm font-semibold">Add your own branded AI intake chat to your website</p>
               <div className="flex flex-wrap items-center gap-4 mt-1.5">
-                {['Fully MARA-compliant', 'GDPR secure', 'Live in minutes'].map((tag, i) => (
+                {['Designed for the MARA Code of Conduct', 'Hosted in Sydney', 'Live in minutes'].map((tag, i) => (
                   <span key={i} className="inline-flex items-center gap-1.5 text-forest/50 text-xs">
                     <span className="w-1 h-1 rounded-full bg-emerald" />{tag}
                   </span>

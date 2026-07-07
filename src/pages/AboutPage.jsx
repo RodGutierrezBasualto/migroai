@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 const trustPillars = [
   {
     title: 'Australian Data Residency',
-    desc: 'GCP Sydney (australia-southeast1). Data never leaves Australia.',
+    desc: 'GCP Sydney (australia-southeast1). Client documents are processed and stored in the Sydney region.',
   },
   {
     title: 'Zero AI Retention',
@@ -22,15 +22,15 @@ const trustPillars = [
 const certBadges = [
   {
     title: 'CSA STAR Level 1',
-    desc: 'Cloud Security Alliance security self-assessment — 263 controls. Published on the public CSA registry.',
+    desc: 'Cloud Security Alliance security self-assessment: 263 controls. Published on the public CSA registry.',
   },
   {
     title: 'CSA STAR for AI Level 1',
-    desc: 'AI governance assessment — 311 controls covering model security, AI governance, and responsible AI practices.',
+    desc: 'AI governance assessment: 311 controls covering model security, AI governance, and responsible AI practices.',
   },
   {
     title: 'ASD Cyber Security Business Partner',
-    desc: 'Registered partner of the Australian Signals Directorate — Australia\'s national cyber security agency.',
+    desc: 'Registered partner of the Australian Signals Directorate, Australia\'s national cyber security agency.',
   },
 ]
 
@@ -77,10 +77,10 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-forest/60 text-base leading-relaxed">
                 <p>
-                  Migration agents manage 15 to 25 documents per visa application — passports, police clearances, employment records, skills assessments, health checks — arriving unorganised across weeks of client communication.
+                  Migration agents manage 15 to 25 documents per visa application: passports, police clearances, employment records, skills assessments, health checks, arriving unorganised across weeks of client communication.
                 </p>
                 <p>
-                  Manually reviewing every document against visa requirements takes 1 to 3 hours per case. For a sole practitioner running 20 cases a month, that is up to 60 hours of non-billable work — a week and a half — before any legal work begins.
+                  Manually reviewing every document against visa requirements takes 1 to 3 hours per case. For a sole practitioner running 20 cases a month, that is up to 60 hours of non-billable work, a week and a half, before any legal work begins.
                 </p>
                 <p className="text-forest font-semibold">
                   Migro eliminates that. Upload the entire bundle. Get a compliance dashboard in two minutes.
@@ -131,10 +131,10 @@ export default function AboutPage() {
               </a>
               <div className="space-y-4 text-forest/60 text-base leading-relaxed">
                 <p>
-                  Rodrigo is an AI automation specialist with 15 years of experience across Chile, Canada, the United States, and Australia. He is a published author of <em>Working with AI</em> — an Amazon bestseller in its category — and an international speaker on AI adoption in professional services, having presented at HubSpot INBOUND San Francisco, YPO Sydney, and Seoul Startup Hub.
+                  Rodrigo is an AI automation specialist with 15 years of experience across Chile, Canada, the United States, and Australia. He is the author of <em>Working with AI</em> and an international speaker on AI adoption in professional services, having presented at HubSpot INBOUND San Francisco, YPO Sydney, and Seoul Startup Hub.
                 </p>
                 <p>
-                  Rodrigo built Migro after going through the Australian visa process himself as a Subclass 190 NSW applicant. The experience of navigating 20+ documents across weeks of back-and-forth — even as a technology professional — revealed how manual and error-prone the document review process is for agents and clients alike.
+                  Rodrigo built Migro after going through the Australian visa process himself as a Subclass 190 NSW applicant. The experience of navigating 20+ documents across weeks of back-and-forth, even as a technology professional, revealed how manual and error-prone the document review process is for agents and clients alike.
                 </p>
                 <p>
                   He also serves as Global CRM &amp; AI Automation Manager at Antler, a global venture capital firm operating across 27 countries, where he builds and deploys AI infrastructure across the portfolio.
@@ -246,7 +246,7 @@ export default function AboutPage() {
             <p className="text-forest/40 text-xs font-medium uppercase tracking-widest mb-4">Infrastructure</p>
             <h2 className="text-2xl font-bold text-forest font-display mb-6">Built on Google Cloud Sydney</h2>
             <p className="text-forest/60 text-base leading-relaxed">
-              Migro is built entirely on Google Cloud (australia-southeast1 — Sydney). AI inference runs on Google Vertex AI (Gemini 1.5 Pro). All data is encrypted at rest (AES-256) and in transit (TLS 1.3). Infrastructure certified ISO 27001 and SOC 2 Type II (Google Cloud).
+              Migro is built entirely on Google Cloud (australia-southeast1, Sydney). AI inference runs on Google Vertex AI (Gemini 2.5 Flash). All data is encrypted at rest (AES-256) and in transit (TLS 1.3). Infrastructure certified ISO 27001 and SOC 2 Type II (Google Cloud).
             </p>
           </motion.div>
         </div>

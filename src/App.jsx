@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import DashboardSection from './components/DashboardSection'
+import DemoVideo from './components/DemoVideo'
 import FeaturesSection from './components/FeaturesSection'
 import ClaudeSection from './components/ClaudeSection'
 import APISection from './components/APISection'
@@ -17,6 +18,7 @@ function HomePage() {
       <Hero />
 
       <DashboardSection />
+      <DemoVideo />
       <FeaturesSection />
       <ClaudeSection />
       <APISection />

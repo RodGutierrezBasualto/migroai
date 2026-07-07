@@ -217,7 +217,7 @@ Always use URL-safe filenames — no spaces. Files with spaces 404 in production
 - **Founder/CEO**: Rodrigo Gutierrez
 - **Contact**: info@migro.com.au
 - **Target market**: Australian MARA-registered migration agents; initial focus NSW sole practitioners
-- **Infrastructure**: Google Cloud Sydney (australia-southeast1), Vertex AI (Gemini 1.5 Pro)
+- **Infrastructure**: Google Cloud Sydney (australia-southeast1), Vertex AI (Gemini 2.5 Flash)
 - **Security**: CSA STAR Level 1, CSA STAR for AI Level 1, ASD Cyber Security Business Partner
 
 ---

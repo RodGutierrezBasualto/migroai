@@ -45,6 +45,14 @@ export default function Footer() {
                   <a href="mailto:info@migro.com.au" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Contact</a>
                 </div>
               </div>
+              <div>
+                <p className="text-white/25 text-xs uppercase tracking-widest mb-3">Legal &amp; Security</p>
+                <div className="space-y-2">
+                  <a href="/#security" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Security</a>
+                  <a href="https://cloudsecurityalliance.org/star/registry/migro" target="_blank" rel="noopener noreferrer" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">CSA STAR Registry</a>
+                  <a href="mailto:info@migro.com.au?subject=DPA%20request" className="block text-white/50 hover:text-white text-sm transition-colors duration-200">Request a DPA</a>
+                </div>
+              </div>
             </div>
           </div>
 

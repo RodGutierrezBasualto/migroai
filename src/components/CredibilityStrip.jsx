@@ -10,7 +10,7 @@ const pillars = [
       </svg>
     ),
     title: 'Australian Data Residency',
-    body: 'All data processed and stored exclusively within Australia. No data ever leaves Australian jurisdiction.',
+    body: 'All client documents and AI processing stay in the Google Cloud Sydney region (australia-southeast1).',
   },
   {
     icon: (
@@ -31,7 +31,7 @@ const pillars = [
       </svg>
     ),
     title: 'AI Privacy',
-    body: 'Zero data retention on AI inference. Your documents are never used to train AI models.',
+    body: 'Zero Data Retention across the entire platform. Your documents are never used to train AI models.',
   },
   {
     icon: (
@@ -51,6 +51,8 @@ const pillars = [
   },
 ]
 
+const REGISTRY_URL = 'https://cloudsecurityalliance.org/star/registry/migro'
+
 const certBadges = [
   { src: '/logos/star-level-one.png',        alt: 'CSA STAR Level One' },
   { src: '/logos/star-for-ai-level-one.png', alt: 'CSA STAR for AI Level One' },
@@ -59,7 +61,7 @@ const certBadges = [
 
 export default function CredibilityStrip() {
   return (
-    <section className="bg-forest py-20 overflow-hidden">
+    <section id="security" className="bg-forest py-20 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Heading */}
@@ -82,7 +84,7 @@ export default function CredibilityStrip() {
               <path d="M9 12l2 2 4-4"/>
             </svg>
             <span className="text-white text-sm font-semibold">ASD Cyber Security Business Partner</span>
-            <span className="text-white/30 text-sm">—</span>
+            <span className="text-white/30 text-sm">·</span>
             <span className="text-white text-sm">Australian Signals Directorate</span>
           </div>
         </motion.div>
@@ -120,14 +122,26 @@ export default function CredibilityStrip() {
           {/* Logo row */}
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
             {certBadges.map((logo, i) => (
-              <img
-                key={i}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
-              />
+              <a key={i} href={REGISTRY_URL} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
+                />
+              </a>
             ))}
           </div>
+
+          <p className="text-center mt-6">
+            <a
+              href={REGISTRY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-white text-xs underline underline-offset-4 transition-colors duration-200"
+            >
+              View Migro's entries on the public CSA STAR registry
+            </a>
+          </p>
 
           <p className="text-center text-white/30 text-xs mt-10 max-w-xl mx-auto leading-relaxed">
             Migro infrastructure is built on Google Cloud Platform, which holds ISO 27001, SOC 2 Type II, PCI DSS, and Australian IRAP certifications.
